@@ -100,22 +100,49 @@ body.ng #ew td,body.ng #ew th{border-color:transparent}.f-buyer{text-align:cente
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) #ew td.xr,:root:not([data-theme=light]) #ew td.xc{box-shadow:inset 0 0 0 999px rgba(76,195,138,.2)}}
 :root[data-theme=dark] #ew td.xr,:root[data-theme=dark] #ew td.xc{box-shadow:inset 0 0 0 999px rgba(76,195,138,.2)}body.selg #tb input{user-select:none}#byw tr[data-by]{cursor:pointer}#byw tr[data-by]:hover td{background:var(--rhov)}
 body.hx td.x,body.hx th:has(.xh){display:none}
-@media print{#rib,.tabs,.flt,.chk,.kpis,#toast{display:none!important}.wrap{max-height:none!important;overflow:visible!important}}
+.lp{height:5px;background:var(--line);border-radius:3px;overflow:hidden;margin:3px auto 1px;min-width:50px}.lp i{display:block;height:100%}td small{display:block;font-size:10px;font-weight:600;color:var(--mut);white-space:nowrap;text-align:center}.ldx{border:0;background:transparent;cursor:pointer;opacity:.6;padding:0 2px;margin-left:2px;font-size:13px;color:inherit}.ldx:hover{opacity:1}.ldx.adl{color:var(--btn);font-weight:800;font-size:15px}#spl td{padding:2px 4px}#spl input{width:96px;padding:3px 5px}#spl tr.hd td{background:var(--tint);font-weight:700;padding-top:8px}#spl .er{color:var(--bad);font-size:11px}
+/* ---- overview + filter panels ---- */
+header{padding:10px 20px;gap:18px;flex-wrap:nowrap}.wm{font-size:34px}.tag{font-size:11px}.ttl h1{font-size:18px;letter-spacing:.1px}.ttl p{margin:2px 0 0}
+#sv{margin-left:auto;margin-top:0;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--tint);font-size:12px;white-space:nowrap}#sv::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+main{padding:12px 20px}.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.prow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.tabs.seg{display:inline-flex;gap:0;margin:0;padding:3px;background:var(--tint);border:1px solid var(--line);border-radius:10px}.tabs.seg button{border:0;background:transparent;border-radius:7px;padding:6px 14px;font-size:13px}.tabs.seg button.on{background:#217346;color:#fff;border:0;box-shadow:0 1px 3px #0003}
+#bytabs{margin:0;align-items:center}.bylab{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);font-weight:700;margin-right:2px}#bytabs button{padding:4px 11px}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;margin:0}
+.kpis .k{font:inherit;text-align:left;display:flex;flex-direction:column;gap:2px;background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--mut);border-top:1px solid var(--line);border-radius:9px;padding:8px 11px;color:var(--ink);cursor:default}
+.kpis button.k{cursor:pointer}.kpis button.k:hover{border-color:var(--btn)}.kpis .k.on{outline:2px solid var(--btn);outline-offset:-1px}
+.kpis .k span{order:0;font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}.kpis .k b{font-size:21px;line-height:1.15}.kpis .k em{font-style:normal;font-size:11px;color:var(--mut)}
+.kpis .kn{border-left-color:#3b6fd8}.kpis .kg{border-left-color:var(--green)}.kpis .ka{border-left-color:#e0a800}.kpis .kr{border-left-color:var(--red)}.kpis .kv{border-left-color:#217346}.kpis .wide{grid-column:span 2;min-width:220px}.kpis .kv .lp{margin:4px 0 2px;height:6px}
+.fbar{padding:10px 12px;position:sticky;top:var(--ribh,64px);z-index:20;box-shadow:0 2px 8px #0002}.fbar .flt{margin:0;align-items:center;gap:6px}
+.srch{flex:1;min-width:220px;display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:var(--bg)}.srch:focus-within{border-color:var(--btn);box-shadow:0 0 0 2px #2EB34A33}.srch span{color:var(--mut);font-size:16px}.srch input{border:0;background:transparent;flex:1;padding:7px 0;outline:none;min-width:0}
+.fbar select{padding:6px 8px;font-size:13px}.ghost{padding:6px 11px;font-size:12px;background:transparent}.fsp{flex:1}.zm{margin-left:0}
+#ckb.warnb{background:var(--warnb);color:var(--warn);border-color:transparent}#ckb.okb{background:var(--okb);color:var(--ok);border-color:transparent}
+.fbar .chk{margin:8px 0 0;font-size:12px}.fbar .chk ul{margin:6px 0 2px}#hint{color:var(--mut)}#hint summary{font-weight:600}
+@media (max-width:760px){header{flex-wrap:wrap}.kpis .wide{grid-column:auto}.fbar{position:static}.fsp{display:none}}
+body.fs .panel#ovw{display:none}
+/* dark mode darkens the interface only; the data grid stays light like an Excel sheet */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .wrap{--bg:#f4f4f4;--card:#fff;--ink:#0e0e0e;--mut:#6b6b6b;--line:#d6d6d6;--tint:#f5f5f5;--ok:#1d6b34;--okb:#DDF1E2;--bad:#B00012;--badb:#FFE0E1;--warn:#8a5a00;--warnb:#FFF0C2;--bal:#FFE699;--btn:#2B8946;--btnt:#fff;--rhov:#dcdcdc;--gf:#217346;--gt:#dcf0e3;--gs:#bfe3cc;--gx:#0b3d22;color:var(--ink);color-scheme:light}:root:not([data-theme="light"]) #ew td.xr,:root:not([data-theme="light"]) #ew td.xc{box-shadow:inset 0 0 0 999px rgba(33,115,70,.13)}}
+:root[data-theme="dark"] .wrap{--bg:#f4f4f4;--card:#fff;--ink:#0e0e0e;--mut:#6b6b6b;--line:#d6d6d6;--tint:#f5f5f5;--ok:#1d6b34;--okb:#DDF1E2;--bad:#B00012;--badb:#FFE0E1;--warn:#8a5a00;--warnb:#FFF0C2;--bal:#FFE699;--btn:#2B8946;--btnt:#fff;--rhov:#dcdcdc;--gf:#217346;--gt:#dcf0e3;--gs:#bfe3cc;--gx:#0b3d22;color:var(--ink);color-scheme:light}:root[data-theme="dark"] #ew td.xr,:root[data-theme="dark"] #ew td.xc{box-shadow:inset 0 0 0 999px rgba(33,115,70,.13)}
+:root[data-theme="dark"] .wrap th,:root[data-theme="dark"] .wrap th input{color:#fff}
+@media print{.panel,.fbar{display:none!important}#rib,.tabs,.flt,.chk,.kpis,#toast{display:none!important}.wrap{max-height:none!important;overflow:visible!important}}
 </style></head><body>
 <div id="rib"><div class="rt"><span class="rtl" style="display:flex;align-items:center;gap:8px"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48Y2xpcFBhdGggaWQ9ImMiPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTEyIi8+PC9jbGlwUGF0aD48L2RlZnM+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMTIiIGZpbGw9IiNmZmYiLz48ZyBjbGlwLXBhdGg9InVybCgjYykiPjxyZWN0IHk9IjQ3NiIgd2lkdGg9IjE3NSIgaGVpZ2h0PSIzNiIgZmlsbD0iIzJCODk0NiIvPjxyZWN0IHg9IjE3NSIgeT0iNDc2IiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjM2IiBmaWxsPSIjRTgwMTAyIi8+PHJlY3QgeD0iMzQ2IiB5PSI0NzYiIHdpZHRoPSIxNjYiIGhlaWdodD0iMzYiIGZpbGw9IiM4Nzg4ODgiLz48L2c+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRTgwMTAyIiBzdHJva2Utd2lkdGg9IjQ2Ij48Y2lyY2xlIGN4PSIyNTYiIGN5PSIxNzIiIHI9IjcwIi8+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMzIwIiByPSI5MiIvPjwvZz48Y2lyY2xlIGN4PSIzNzgiIGN5PSIxMTIiIHI9IjMwIiBmaWxsPSIjMkVCMzRBIi8+PC9zdmc+Cg==" alt="" width="24" height="24" style="border-radius:6px">Receiving Monitoring</span><span id="qat"><button data-q="un" title="Undo (Ctrl+Z)">↶</button><button data-q="re" title="Redo (Ctrl+Y)">↷</button><button data-q="de" title="Delete the selected lines (tick their boxes, or use the 🗑 on a line)">🗑</button></span><nav id="rtabs" role="tablist"></nav><span id="rst"></span></div><div id="rp"></div></div><style id="fcss"></style><style id="pcss"></style>
 <header>
 <div class="brand" aria-label="Eight8ate - Delighting Generations"><div class="wm">E<span class="gi">ı</span>ght<b>8</b>ate</div><div class="tag">Delighting Generations.</div></div>
-<div><h1>Receiving Monitoring 2026</h1><p>Purchase order receiving database &middot; PO &rarr; line items &rarr; deliveries</p><span id="sv">Loading…</span></div>
+<div class="ttl"><h1>Receiving Monitoring 2026</h1><p>Purchase order receiving &middot; PO &rarr; line items &rarr; deliveries &middot; linked to the AP Tracker</p></div><span id="sv">Loading…</span>
 <div class="act"><label class="sw" title="Dark mode"><span class="ic">☀</span><input type="checkbox" id="dm" aria-label="Dark mode"><i></i><span class="ic">☾</span></label><button id="bf" title="Full screen (Esc to exit)">⛶ Full screen</button><button id="bi" title="Excel, CSV or an image (photo/screenshot of the sheet). Pick one or many files — the newest by file date is used. You can also drop a file anywhere on the page or paste a copied file with Ctrl+V.">⇪ Import file</button><input type="file" id="imf" accept=".xlsx,.csv,.png,.jpg,.jpeg,.webp,.gif" multiple hidden><button id="bl" title="Pick a folder once — always imports the newest Excel/CSV in it">📁 Latest in folder</button><input type="file" id="imd" webkitdirectory hidden><label class="sw" title="Auto-import whenever the newest file in the folder changes"><input type="checkbox" id="wt"><i></i><span class="ic" style="font-size:12px">Auto</span></label><button class="pri" id="bx" title="Exports the entries sheet plus a Summary Report sheet">Export Excel</button><button id="bun" title="Undo (Ctrl+Z)">↶ Undo</button><button id="bre" title="Redo (Ctrl+Y)">↷ Redo</button><button id="bd" class="dng" disabled>Delete selected</button><button id="bj">Export JSON</button><button id="br">Reset to original</button></div>
 </header>
 <div class="stripe"></div>
 <main>
-<div class="tabs"><button id="tE" class="on">Entries</button><button id="tS">Summary report</button><button id="tB">Buyer log</button></div><div id="bytabs"></div>
-<div class="kpis" id="kp"></div>
-<details class="chk" id="ck"><summary id="cs"></summary><ul id="cl"></ul></details>
-<details class="chk" id="ir" hidden><summary id="irs"></summary><ul id="irl"></ul></details>
-<div class="flt"><input id="q" type="search" placeholder="Search PO, supplier, item, description, DR, SI#"><select id="bu"><option value="">All BU</option></select><select id="bysel"><option value="">All buyers</option></select><select id="st"><option value="">All status</option><option>Complete</option><option>Partial</option><option>Pending</option></select><select id="apf" hidden title="Link to the AP Tracker"><option value="">All AP status</option><option value="gap">Needs transmittal (no AP proof)</option><option value="none">Not in AP</option><option value="pend">In AP, not confirmed</option><option value="rx">Received by AP</option></select><span class="zm" aria-label="Zoom"><button id="zo" title="Zoom out">−</button><input type="range" id="zr" min="50" max="200" step="10" value="100"><button id="zi" title="Zoom in">+</button><button id="zp" title="Reset zoom">100%</button></span></div>
-<div class="chk" style="font-size:12px;color:var(--mut)">Bulk entry: copy the Line → Ordered cells (or any columns) from Excel, click the first <b>Line</b> cell of a blank row and press Ctrl+V — or drag-and-drop text, a .csv or an .xlsx onto that cell. Every row fills in one paste. A new PO starts whenever Line = 1.</div>
+<section class="panel" id="ovw">
+ <div class="prow"><div class="tabs seg"><button id="tE" class="on">▦ Entries</button><button id="tS">Σ Summary report</button><button id="tB">◉ Buyer log</button></div><div id="bytabs"></div></div>
+ <div class="kpis" id="kp"></div>
+</section>
+<section class="panel fbar">
+ <div class="flt"><label class="srch"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search PO, supplier, item, description, DR, SI#, RR"></label><select id="bu"><option value="">All BU</option></select><select id="bysel"><option value="">All buyers</option></select><select id="st"><option value="">All status</option><option>Complete</option><option>Partial</option><option>Pending</option><option>Over-delivered</option><option>Closed short</option></select><select id="ag" title="Aging of partially delivered POs: days since the first delivery"><option value="">All ages</option><option value="7">Partial &gt; 7 days</option><option value="15">Partial &gt; 15 days</option><option value="30">Partial &gt; 30 days</option></select><select id="apf" hidden title="Link to the AP Tracker"><option value="">All AP status</option><option value="gap">Needs transmittal (no AP proof)</option><option value="none">Not in AP</option><option value="pend">In AP, not confirmed</option><option value="rx">Received by AP</option></select><button id="fx" class="ghost" type="button" title="Clear search and all filters">✕ Clear</button><span class="fsp"></span><button id="ckb" class="ghost" type="button" title="Formula and duplicate checks"></button><span class="zm" aria-label="Zoom"><button id="zo" title="Zoom out">−</button><input type="range" id="zr" min="50" max="200" step="10" value="100"><button id="zi" title="Zoom in">+</button><button id="zp" title="Reset zoom">100%</button></span></div>
+ <details class="chk" id="ck" hidden><summary id="cs"></summary><ul id="cl"></ul></details>
+ <details class="chk" id="ir" hidden><summary id="irs"></summary><ul id="irl"></ul></details>
+</section>
 <div class="wrap" id="ew"><table><thead><tr id="hd"></tr></thead><tbody id="tb"></tbody></table><div class="empty" id="em" hidden>No purchase orders match.</div></div>
 <div class="wrap" id="sm" hidden></div><div class="wrap" id="byw" hidden></div><datalist id="bylist"></datalist>
 </main>
@@ -151,7 +178,7 @@ window.SBX={role:'owner',get email(){return EM},
   async syncAp(apply){const r=await C.rpc('rm_sync_ap',{p_apply:!!apply});if(r.error)throw new Error(r.error.message);return r.data||[]},
   async plan(){const r=await C.rpc('rm_ap_plan');if(r.error)throw new Error(r.error.message);return Array.isArray(r.data)?r.data:[]},
   async pending(){const r=await C.rpc('rm_ap_pending');if(r.error)throw new Error(r.error.message);return r.data||[]},
-  async apdocs(){const r=await C.rpc('rm_ap_docs');if(r.error)throw new Error(r.error.message);return r.data||[]},
+  async apdocs(){let r=await C.rpc('rm_ap_docs2');if(r.error)r=await C.rpc('rm_ap_docs');if(r.error)throw new Error(r.error.message);return r.data||[]},
   async audit(n){const r=fail(await C.from('rm_audit').select('at,email,coll,doc_id,action,po,changes').order('at',{ascending:false}).limit(n||300));return r.data||[]},
   async team(){const r=fail(await C.from('rm_team').select('email,role,added_at,member_id,owner_id').order('added_at'));return r.data||[]},
   async add(e,role){const r=await C.rpc('rm_add_member',{p_email:e,p_role:role||'buyer'});if(r.error)throw new Error(r.error.message);return r.data},
@@ -163,15 +190,30 @@ window.SBOUT=async()=>{try{await C.auth.signOut()}catch(e){}location.reload()};
 <script>const em=v=>v==null||v==='';
 const EF=['po','supplier','bu','buyer','ln','item','desc','uom','qty','price','ord','q','d','dr','si','rr','ap','rb'];
 const BUY0=[{n:'Arlene',r:'Buyer'},{n:'Ellaris',r:'Buyer'},{n:'Frayla',r:'Buyer'},{n:'Carla',r:'Senior Buyer'},{n:'Sherwin',r:'Senior Buyer'},{n:'Vanesa',r:'Proc. Manager'}],BYL=()=>D.buyers&&D.buyers.length?D.buyers:BUY0;
-function isBlank(e){return EF.every(f=>em(e[f]))&&!Object.values(e.x||{}).some(v=>!em(v))}
+function isBlank(e){return !e.nd&&EF.every(f=>em(e[f]))&&!Object.values(e.x||{}).some(v=>!em(v))}
+/* document numbers: plain numbers stay numbers; leading zeros, dots and slashes are kept as text (0217883, 16443.16442) */
+const dtx=v=>{v=String(v==null?'':v).trim();return /^[1-9]\d{0,14}$/.test(v)?Number(v):v};
+/* delivery progress of one PO. % delivered = received value / ordered value. A closed line counts only what was received. */
+function pEff(p){let q=0,g=0,j=0,v=0,ej=0,eq=0,ov=0,cl=0,f=null;
+  p.lines.forEach(l=>{const gl=l.rec.reduce((a,r)=>a+(Number(r.q)||0),0),pr=Number(l.price)||0,qy=Number(l.qty)||0,e=l.cl?Math.min(qy,gl):qy;
+    q+=qy;g+=gl;j+=Number(l.ordered)||qy*pr;v+=gl*pr;ej+=e*pr;eq+=e;if(gl>qy&&qy>0)ov++;if(l.cl&&gl<qy)cl++;
+    l.rec.forEach(r=>{if(r.d&&(!f||r.d<f))f=r.d})});
+  const pct=ej?v/ej:eq?g/eq:(cl?1:0),und=Math.max(0,1-pct);
+  const s=ov?'Over-delivered':(g===0&&!cl)?'Pending':pct>=0.99999?(cl?'Closed short':'Complete'):'Partial';
+  return{q,g,j,v,ej,eq,pct,und,s,f,ov,cl}}
+/* Oracle prices can have 4+ decimals (2,151.9041). When a pasted Ordered amount differs from Qty x Price only because
+   the price was copied rounded, the unit price is recalculated from Ordered / Qty so Qty x Price = Ordered exactly. */
+function fixOrd(e){if(!e)return false;const q=Number(e.qty),pr=Number(e.price),od=Number(e.ord);
+  if(e.ord==null||e.ord===''||!(q>0)||isNaN(pr)||isNaN(od)||Math.abs(od-q*pr)<=0.005||Math.abs(od/q-pr)>=0.01)return false;
+  e.price=+(od/q).toFixed(6);return true}
 function colName(n){let s='';while(n>0){const m=(n-1)%26;s=String.fromCharCode(65+m)+s;n=Math.floor((n-1)/26)}return s}
 function colNum(s){return [...s].reduce((a,c)=>a*26+c.charCodeAt(0)-64,0)}
 
 function summaryRows(all){return all.map(p=>{let q=0,g=0,tot=0,rv=0,lc=0,si=0,f=null,l=null;
-  p.lines.forEach(x=>{q+=x.qty;tot+=x.ordered;const gl=x.rec.reduce((a,r)=>a+(r.q||0),0);g+=gl;rv+=gl*x.price;if(x.qty-gl===0)lc++;
+  p.lines.forEach(x=>{q+=x.qty;tot+=x.ordered;const gl=x.rec.reduce((a,r)=>a+(r.q||0),0);g+=gl;rv+=gl*x.price;if(x.qty-gl<=0||x.cl)lc++;
     x.rec.forEach(r=>{if(r.si!=null)si++;if(r.d){if(!f||r.d<f)f=r.d;if(!l||r.d>l)l=r.d}})});
-  return{po:p.po,supplier:p.supplier,bu:p.bu,buyer:p.buyer||'',lines:p.lines.length,lc,lo:p.lines.length-lc,q,g,bal:q-g,tot,rv,und:tot-rv,pct:q?g/q:0,undp:q?(q-g)/q:0,st:g===0?'Pending':q-g===0?'Complete':'Partial',f,l,si}})}
-function sumAgg(R){const a={n:R.length,lines:0,lc:0,lo:0,q:0,g:0,bal:0,tot:0,rv:0,und:0};R.forEach(r=>['lines','lc','lo','q','g','bal','tot','rv','und'].forEach(k=>a[k]+=r[k]));a.pct=a.q?a.g/a.q:0;a.undp=a.q?a.bal/a.q:0;return a}
+  return{po:p.po,supplier:p.supplier,bu:p.bu,buyer:p.buyer||'',lines:p.lines.length,lc,lo:p.lines.length-lc,q,g,bal:q-g,tot,rv,und:tot-rv,...(E=>({pct:E.pct,undp:E.und,st:E.s,ej:E.ej,cl:E.cl,ov:E.ov}))(pEff(p)),f,l,si}})}
+function sumAgg(R){const a={n:R.length,lines:0,lc:0,lo:0,q:0,g:0,bal:0,tot:0,rv:0,und:0,ej:0};R.forEach(r=>['lines','lc','lo','q','g','bal','tot','rv','und','ej'].forEach(k=>a[k]+=r[k]||0));a.pct=a.ej?a.rv/a.ej:a.q?a.g/a.q:0;a.undp=Math.max(0,1-a.pct);return a}
 /* Grouping: supplier = FIRST WORD of the name (KLG INT'L INC FSD / KLG INTERNATIONAL INC -> KLG); BU = code before the first hyphen (ASF-TNM -> ASF). Stored names are never changed. */
 function supKey(v){const t=String(v==null?'':v).toUpperCase().replace(/['\u2019`]/g,'').replace(/[^A-Z0-9& ]/g,' ').trim().split(/\s+/)[0];return t||''}
 function buKey(v){return String(v==null?'':v).toUpperCase().trim().split(/[\s\-–—]+/)[0]||''}
@@ -185,7 +227,7 @@ function deriveEnt(E){
     const rec={q:em(e.q)?null:e.q,d:e.d||null,dr:em(e.dr)?null:e.dr,si:em(e.si)?null:e.si,amt:{f:'LI'},rr:em(e.rr)?null:e.rr,ap:e.ap||null,rb:em(e.rb)?null:e.rb,_i:i};
     if(!['ln','item','desc','uom','qty','price'].some(f=>!em(e[f]))&&ln){ln.rec.push(rec);return}
     const prev=po.lines.length?po.lines[po.lines.length-1].ln:0,q=e.qty||0,p=e.price||0;
-    ln={ln:em(e.ln)?prev+1:e.ln,item:e.item??'',desc:e.desc??'',uom:e.uom??'',qty:q,price:p,ordered:q*p,calc:true,rec:[rec],x:e.x&&Object.keys(e.x).length?e.x:null,_i:i};
+    ln={ln:em(e.ln)?prev+1:e.ln,item:e.item??'',desc:e.desc??'',uom:e.uom??'',qty:q,price:p,ordered:q*p,calc:true,rec:[rec],x:e.x&&Object.keys(e.x).length?e.x:null,cl:e.cl||null,ovr:e.ovr||null,_i:i};
     po.lines.push(ln)});
   return pos}
 function buildWorkbook(ExcelJS, D){
@@ -200,7 +242,7 @@ function buildWorkbook(ExcelJS, D){
   const fill=a=>({type:'pattern',pattern:'solid',fgColor:{argb:a}});
   const c3='#,##0.00;\\-#,##0.00;\\-', c0='#,##0;\\-#,##0;\\-';
   // [numFmt, horizontal, wrap, bold]
-  const S=[['@','center',1,1],['General','left',1],['General','center',1],['0','center'],['@','left',1],['@','left',1],['@','center'],['#,##0','right'],['#,##0.00','right'],['#,##0.00','right'],['#,##0.00','right',0,1],['#,##0','right'],['mm/dd/yyyy','center'],['General','center'],['General','center'],[c3,'right'],['General','center'],[c0,'right'],['mm/dd/yyyy','center'],['General','left',1],['0.0%','center',0,1],['0.0%','center',0,1]];
+  const S=[['@','center',1,1],['General','left',1],['General','center',1],['0','center'],['@','left',1],['@','left',1],['@','center'],['#,##0','right'],['#,##0.00##','right'],['#,##0.00','right'],['#,##0.00','right',0,1],['#,##0','right'],['mm/dd/yyyy','center'],['General','center'],['General','center'],[c3,'right'],['General','center'],[c0,'right'],['mm/dd/yyyy','center'],['General','left',1],['0.0%','center',0,1],['0.0%','center',0,1]];
   const build=(ws,wsS,all,name,ttl,blank)=>{
   W.forEach((w,i)=>{if(w)ws.getColumn(i+1).width=w});
   const hr=ws.getRow(1); hr.height=30;
@@ -225,14 +267,16 @@ function buildWorkbook(ExcelJS, D){
           if(rr===first){
             ws.getCell(rr,1).value=p.po; ws.getCell(rr,2).value=p.supplier; ws.getCell(rr,3).value=p.bu;
             ws.getCell(rr,11).value={formula:`SUM(J${first}:J${last})`,result:sumJ};
-            ws.getCell(rr,21).value={formula:`IF(SUM(H${first}:H${last})=0,0,SUM(L${first}:L${last})/SUM(H${first}:H${last}))`,result:sumQ?sumL/sumQ:0};
-            ws.getCell(rr,22).value={formula:`IF(SUM(H${first}:H${last})=0,0,SUM(R${first}:R${last})/SUM(H${first}:H${last}))`,result:sumQ?sumR/sumQ:0};
+            {const E=pEff(p);if(E.cl){ws.getCell(rr,21).value=E.pct;ws.getCell(rr,22).value=E.und}else{
+            ws.getCell(rr,21).value={formula:`IF(SUM(J${first}:J${last})=0,0,SUM(P${first}:P${last})/SUM(J${first}:J${last}))`,result:E.pct};
+            ws.getCell(rr,22).value={formula:`IF(SUM(J${first}:J${last})=0,0,MAX(0,1-SUM(P${first}:P${last})/SUM(J${first}:J${last})))`,result:E.und}}}
             [1,2,3,11,21,22].forEach(c=>merges.push([first,c,last,c]));
           }
           [[4,l.ln],[5,l.item],[6,l.desc],[7,l.uom],[8,l.qty],[9,l.price]].forEach(([c,v])=>ws.getCell(lr,c).value=v);
           ws.getCell(lr,10).value=l.calc?{formula:`H${lr}*I${lr}`,result:l.ordered}:l.ordered;
           ws.getCell(lr,18).value={formula:'H'+lr+'-L'+lr+(n>1?'-L'+(lr+1):''),result:l.qty-got};
           if(n>1)[4,5,6,7,8,9,10,18].forEach(c=>merges.push([lr,c,lr+n-1,c]));
+          {const nt=[l.cl?'Balance closed '+(l.cl.d||'')+': '+(l.cl.why||''):'',l.ovr?'Over-delivery accepted: '+l.ovr:''].filter(Boolean).join('\n');if(nt)ws.getCell(lr,18).note=nt}
           if(l.x)Object.entries(l.x).forEach(([col,v])=>{if(colNum(col)>22)ws.getCell(col+lr).value=v});
         }
         if(x.q!=null)ws.getCell(rr,12).value=x.q;
@@ -282,19 +326,19 @@ function buildWorkbook(ExcelJS, D){
       F(r,4,bg,0,`COUNT(${S('D')})`,s.lines);F(r,5,bg,0,`COUNTIF(${S('R')},0)`,s.lc);F(r,6,bg,0,`D${r}-E${r}`,s.lo);
       F(r,7,bg,0,`SUM(${S('H')})`,s.q);F(r,8,bg,0,`SUM(${S('L')})`,s.g);F(r,9,bg,0,`G${r}-H${r}`,s.bal);
       F(r,10,bg,1,`SUM(${S('J')})`,s.tot);F(r,11,bg,0,`SUM(${S('P')})`,s.rv);F(r,12,bg,0,`J${r}-K${r}`,s.und);
-      F(r,13,bg,1,`IF(G${r}=0,0,H${r}/G${r})`,s.pct);F(r,14,bg,1,`IF(G${r}=0,0,I${r}/G${r})`,s.undp);
-      F(r,15,bg,1,`IF(H${r}=0,"Pending",IF(I${r}=0,"Complete","Partial"))`,s.st);
+      F(r,13,bg,1,`'${name}'!U${a}`,s.pct);F(r,14,bg,1,`'${name}'!V${a}`,s.undp);
+      if(s.cl||s.ov)put(r,15,bg,1,s.st);else F(r,15,bg,1,`IF(H${r}=0,"Pending",IF(I${r}<=0,"Complete","Partial"))`,s.st);
       F(r,16,bg,0,`IF(COUNT(${S('M')})=0,"",MIN(${S('M')}))`,ser(s.f));F(r,17,bg,0,`IF(COUNT(${S('M')})=0,"",MAX(${S('M')}))`,ser(s.l));
       F(r,18,bg,0,`COUNTA(${S('O')})`,s.si);put(r,19,bg,0,s.buyer||'');put(r,20,bg,0,supKey(s.supplier)||'(blank)');put(r,21,bg,0,buKey(s.bu)||'(blank)')});
     const A=sumAgg(R),tr=eN+1,sm=(c,v)=>F(tr,c,LT[0],1,`SUM(${colName(c)}${e0}:${colName(c)}${eN})`,v);
     for(let c=1;c<=21;c++)put(tr,c,LT[0],1);wsS.mergeCells(tr,1,tr,3);wsS.getCell(tr,1).value='GRAND TOTAL';wsS.getCell(tr,1).alignment={horizontal:'center',vertical:'middle'};
     [[4,A.lines],[5,A.lc],[6,A.lo],[7,A.q],[8,A.g],[9,A.bal],[10,A.tot],[11,A.rv],[12,A.und]].forEach(([c,v])=>sm(c,v));
-    F(tr,13,LT[0],1,`IF(G${tr}=0,0,H${tr}/G${tr})`,A.pct);F(tr,14,LT[0],1,`IF(G${tr}=0,0,I${tr}/G${tr})`,A.undp);
+    F(tr,13,LT[0],1,`IF(J${tr}=0,0,K${tr}/J${tr})`,A.pct);F(tr,14,LT[0],1,`IF(J${tr}=0,0,MAX(0,1-K${tr}/J${tr}))`,A.undp);
     const ds=R.map(s=>s.f).filter(Boolean).sort(),de=R.map(s=>s.l).filter(Boolean).sort();
     F(tr,16,LT[0],1,`IF(COUNT(P${e0}:P${eN})=0,"",MIN(P${e0}:P${eN}))`,ser(ds[0]));F(tr,17,LT[0],1,`IF(COUNT(Q${e0}:Q${eN})=0,"",MAX(Q${e0}:Q${eN}))`,ser(de[de.length-1]));sm(18,R.reduce((a,s)=>a+s.si,0));
     const cfR=(ref,a,b,c)=>wsS.addConditionalFormatting({ref,rules:[{type:'cellIs',operator:'equal',formulae:a,priority:1,style:cf('FF006100','FFC6EFCE',1)},{type:'cellIs',operator:'greaterThanOrEqual',formulae:b,priority:2,style:cf('FF9C0006','FFFFC7CE',1)},{type:'cellIs',operator:'greaterThan',formulae:c,priority:3,style:cf('FF9C5700','FFFFEB9C',1)}]});
     cfR(`N${e0}:N${eN}`,[0],[1],[0]);
-    wsS.addConditionalFormatting({ref:`O${e0}:O${eN}`,rules:[{type:'cellIs',operator:'equal',formulae:['"Complete"'],priority:4,style:cf('FF006100','FFC6EFCE',1)},{type:'cellIs',operator:'equal',formulae:['"Pending"'],priority:5,style:cf('FF9C0006','FFFFC7CE',1)},{type:'cellIs',operator:'equal',formulae:['"Partial"'],priority:6,style:cf('FF9C5700','FFFFEB9C',1)}]});
+    wsS.addConditionalFormatting({ref:`O${e0}:O${eN}`,rules:[{type:'cellIs',operator:'equal',formulae:['"Complete"'],priority:4,style:cf('FF006100','FFC6EFCE',1)},{type:'cellIs',operator:'equal',formulae:['"Pending"'],priority:5,style:cf('FF9C0006','FFFFC7CE',1)},{type:'cellIs',operator:'equal',formulae:['"Partial"'],priority:6,style:cf('FF9C5700','FFFFEB9C',1)},{type:'cellIs',operator:'equal',formulae:['"Over-delivered"'],priority:7,style:cf('FF9C0006','FFFFC7CE',1)},{type:'cellIs',operator:'equal',formulae:['"Closed short"'],priority:8,style:cf('FF006100','FFC6EFCE',1)}]});
     /* by Supplier / by BU: SUMIF over the table above */
     let row=tr+3;
     [['SUMMARY BY SUPPLIER (grouped by first word of the supplier name)','Supplier','supplier','T'],['SUMMARY BY BU (grouped by BU code before the hyphen)','BU','bu','U']].forEach(([title,lab,key,kc])=>{
@@ -304,10 +348,10 @@ function buildWorkbook(ExcelJS, D){
       g.forEach(([k,v],i)=>{const r=row++,bg=i%2?'FFEAF0F8':'FFFFFFFF',cr=k==='(blank)'?'""':`$B${r}`;
         put(r,2,bg,1,k).alignment={horizontal:'left',vertical:'middle'};F(r,3,bg,0,`COUNTIF(${rk},${cr})`,v.n).numFmt='0';
         [[4,'lines'],[5,'lc'],[6,'lo'],[7,'q'],[8,'g'],[9,'bal'],[10,'tot'],[11,'rv'],[12,'und']].forEach(([c,f])=>F(r,c,bg,c===10,`SUMIF(${rk},${cr},${colName(c)}$${e0}:${colName(c)}$${eN})`,v[f]));
-        F(r,13,bg,1,`IF(G${r}=0,0,H${r}/G${r})`,v.pct);F(r,14,bg,1,`IF(G${r}=0,0,I${r}/G${r})`,v.undp);{const x=wsS.getCell(r,15);x.value=v.names.length>1?v.names.join('; '):'';x.font={name:'Arial',size:9,italic:true,color:{argb:'FF666666'}};x.alignment={horizontal:'left',vertical:'middle'}}});
+        F(r,13,bg,1,`IF(J${r}=0,0,K${r}/J${r})`,v.pct);F(r,14,bg,1,`IF(J${r}=0,0,MAX(0,1-K${r}/J${r}))`,v.undp);{const x=wsS.getCell(r,15);x.value=v.names.length>1?v.names.join('; '):'';x.font={name:'Arial',size:9,italic:true,color:{argb:'FF666666'}};x.alignment={horizontal:'left',vertical:'middle'}}});
       const r=row++,g1=r-1;for(let c=2;c<=14;c++)put(r,c,LT[0],1);wsS.getCell(r,2).value='TOTAL';
       F(r,3,LT[0],1,`SUM(C${g0}:C${g1})`,A.n).numFmt='0';[[4,A.lines],[5,A.lc],[6,A.lo],[7,A.q],[8,A.g],[9,A.bal],[10,A.tot],[11,A.rv],[12,A.und]].forEach(([c,v])=>F(r,c,LT[0],1,`SUM(${colName(c)}${g0}:${colName(c)}${g1})`,v));
-      F(r,13,LT[0],1,`IF(G${r}=0,0,H${r}/G${r})`,A.pct);F(r,14,LT[0],1,`IF(G${r}=0,0,I${r}/G${r})`,A.undp);
+      F(r,13,LT[0],1,`IF(J${r}=0,0,K${r}/J${r})`,A.pct);F(r,14,LT[0],1,`IF(J${r}=0,0,MAX(0,1-K${r}/J${r}))`,A.undp);
       cfR(`N${g0}:N${g1}`,[0],[1],[0]);row+=2});
   })();
   };
@@ -328,10 +372,10 @@ function buildWorkbook(ExcelJS, D){
     const rows=names.map(n=>[n,n,(BL.find(b=>b.n===n)||{}).r||'']);if(R.some(x=>!x.buyer))rows.push(['','(Unassigned)','']);
     let r=4;rows.forEach(([k,lab,role],i)=>{const bg=i%2?'FFEAF0F8':'FFFFFFFF',a=sumAgg(R.filter(x=>(x.buyer||'')===k)),cr=k?`$A${r}`:'""',sf=c=>`SUMIF(${rg('S')},${cr},${rg(c)})`;
       put(r,1,bg,1,lab);put(r,2,bg,0,role);F(r,3,bg,0,`COUNTIF(${rg('S')},${cr})`,a.n);F(r,4,bg,0,sf('D'),a.lines);F(r,5,bg,0,sf('G'),a.q);F(r,6,bg,0,sf('H'),a.g);F(r,7,bg,0,`E${r}-F${r}`,a.bal);
-      F(r,8,bg,1,sf('J'),a.tot);F(r,9,bg,0,sf('K'),a.rv);F(r,10,bg,0,`H${r}-I${r}`,a.und);F(r,11,bg,1,`IF(E${r}=0,0,F${r}/E${r})`,a.pct);F(r,12,bg,1,`IF(E${r}=0,0,G${r}/E${r})`,a.undp);r++});
+      F(r,8,bg,1,sf('J'),a.tot);F(r,9,bg,0,sf('K'),a.rv);F(r,10,bg,0,`H${r}-I${r}`,a.und);F(r,11,bg,1,`IF(H${r}=0,0,I${r}/H${r})`,a.pct);F(r,12,bg,1,`IF(H${r}=0,0,MAX(0,1-I${r}/H${r}))`,a.undp);r++});
     const A=sumAgg(R),g0=4,g1=r-1,LT='FFD9E2F3';for(let c=1;c<=12;c++)put(r,c,LT,1);ws.getCell(r,1).value='ALL BUYERS';
     [[3,A.n],[4,A.lines],[5,A.q],[6,A.g],[7,A.bal],[8,A.tot],[9,A.rv],[10,A.und]].forEach(([c,v])=>{const L=String.fromCharCode(64+c);F(r,c,LT,1,`SUM(${L}${g0}:${L}${g1})`,v)});
-    F(r,11,LT,1,`IF(E${r}=0,0,F${r}/E${r})`,A.pct);F(r,12,LT,1,`IF(E${r}=0,0,G${r}/E${r})`,A.undp)})();
+    F(r,11,LT,1,`IF(H${r}=0,0,I${r}/H${r})`,A.pct);F(r,12,LT,1,`IF(H${r}=0,0,MAX(0,1-I${r}/H${r}))`,A.undp)})();
   wb.calcProperties.fullCalcOnLoad=true;
   return wb;
 }
@@ -344,13 +388,15 @@ const topup=()=>{let t=0;for(let i=D.ent.length-1;i>=0&&isBlank(D.ent[i]);i--)t+
 let D=(()=>{let d=null;try{d=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem('rm2026:v1'))}catch(e){}return d&&d.pos?d:{pos:clone(SEED.pos),v:2}})();
 D.ent=D.ent||[];D.xh=D.xh||{};topup();
 const shiftX=o=>{if(!o)return o;const r={};Object.keys(o).forEach(L=>r[colNum(L)>=21?colName(colNum(L)+2):L]=o[L]);return r};
-const migrate=()=>{let n=0;if((D.v||1)<2){D.pos.forEach((p,pi)=>{p.lines.forEach(l=>{if(l.x)l.x=shiftX(l.x)});dirty.add(pi)});D.ent.forEach(e=>{if(e.x)e.x=shiftX(e.x)});D.xh=shiftX(D.xh)||{};D.v=2;entDirty=true;n++}
+const migrate=()=>{let n=0;if(D.ent.some(fixOrd)){entDirty=true;n++}if((D.v||1)<2){D.pos.forEach((p,pi)=>{p.lines.forEach(l=>{if(l.x)l.x=shiftX(l.x)});dirty.add(pi)});D.ent.forEach(e=>{if(e.x)e.x=shiftX(e.x)});D.xh=shiftX(D.xh)||{};D.v=2;entDirty=true;n++}
   D.pos.forEach((p,pi)=>{if(p.po==='438610005121')p.lines.forEach(l=>{if(l.ln===60&&l.item==='RMPD00300110050'){l.ln=69;dirty.add(pi);n++}})});return n};
 let MD=2;const fmt=(n,d=MD)=>Number(n||0).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}),f0=n=>fmt(n,0);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const got=l=>l.rec.reduce((a,x)=>a+(x.q||0),0);
-function stats(p){let q=0,j=0,g=0,v=0;p.lines.forEach(l=>{q+=l.qty;j+=l.ordered;g+=got(l);v+=got(l)*l.price});return{q,j,g,v,pct:q?g/q:0,und:q?(q-g)/q:0,s:g===0?'Pending':q-g===0?'Complete':'Partial'}}
-const inp=(a,v,t,c)=>{const f=a.split('.').pop();if(['qty','q','price','ord'].includes(f)&&v!=null&&v!==''&&!isNaN(Number(v)))v=fmt(v,f==='price'||f==='ord'?MD:0);return `<input data-a="${a}" type="${t||'text'}" value="${esc(v)}"${f==='buyer'?' list="bylist"':''} class="f-${f} ${c||''}">`};
+function stats(p){return pEff(p)}
+function poAge(s){if(s.s!=='Partial'||!s.f)return null;return Math.max(0,Math.floor((Date.now()-Date.parse(s.f+'T00:00:00'))/864e5))}
+function agOk(p){const e=document.getElementById('ag'),a=e?+e.value:0;if(!a)return true;const g=poAge(stats(p));return g!=null&&g>a}
+const inp=(a,v,t,c)=>{const f=a.split('.').pop();if(['qty','q','price','ord'].includes(f)&&v!=null&&v!==''&&!isNaN(Number(v)))v=f==='price'?Number(v).toLocaleString('en-US',{minimumFractionDigits:MD,maximumFractionDigits:Math.max(MD,4)}):fmt(v,f==='ord'?MD:0);return `<input data-a="${a}" type="${t||'text'}" value="${esc(v)}"${f==='buyer'?' list="bylist"':''} class="f-${f} ${c||''}">`};
 const num=s=>Number(String(s).replace(/[\s,₱$"']/g,''));
 const xcols=()=>{let m=22;Object.keys(D.xh).forEach(L=>m=Math.max(m,colNum(L)));const f=o=>Object.keys(o||{}).forEach(L=>m=Math.max(m,colNum(L)));D.pos.forEach(p=>p.lines.forEach(l=>f(l.x)));D.ent.forEach(e=>f(e.x));return Array.from({length:m-22+100},(_,i)=>colName(23+i))};
 let X=[];const RV={pre:o=>o,vis:()=>true};
@@ -367,7 +413,7 @@ function rowChip(po,x){if(!planOn||!String(x.q==null?'':x.q).trim())return '';po
   const rs=S.map(t=>PIDX.get(po+'|'+k+'|'+nkx(t))).filter(Boolean);if(!rs.length)return '';
   const n=rs.length,rx=rs.filter(r=>r.proof).length,nw=rs.filter(r=>r.state==='Not yet in AP').length,c=rx===n?'ok':nw===n?'bad':'warn',
     t=n>1?'AP '+rx+'/'+n:rx?'AP ✓':nw?'Not in AP':'AP …',
-    tip=(S.length>1?'Read as '+S.length+' separate invoices:\n':'')+rs.map(planLine).join('\n')+(rs.some(r=>r.rr_check)?'\nThe number of RR# does not match the number of SI# — please check.':'')+(rs.some(r=>r.amount_unknown)?'\nOne quantity covers several SI#, so the amount per SI is left for you to enter.':'');
+    tip=(S.length>1?'Read as '+S.length+' separate invoices:\n':'')+rs.map(planLine).join('\n')+(rs.some(r=>r.rr_check)?'\nThe number of RR# does not match the number of SI# — please check.':'');
   return `<span class="apb ${c}" title="${esc(tip)}">${t}</span>`}
 function apb(p){if(!apOn||!String(p.po||'').trim())return '';const i=apInfo(p),pn=pendOn?PEND.get(String(p.po).trim()):null,pl=planOn?PLAN.get(String(p.po).trim()):null;let c,t,tip;
   if(pl&&pl.length){const n=pl.length,rx=pl.filter(x=>x.proof).length,nw=pl.filter(x=>x.state==='Not yet in AP').length;
@@ -377,28 +423,34 @@ function apb(p){if(!apOn||!String(p.po||'').trim())return '';const i=apInfo(p),p
   else if(i){if(i.n_rx>=i.n){c='ok';t='AP ✓';tip='Received by AP ('+i.n_rx+' of '+i.n+' documents)'}else if(i.n_rx>0){c='warn';t='AP ◐';tip=i.n_rx+' of '+i.n+' documents received by AP'}else{c='warn';t='AP …';tip='Sent to AP, waiting for AP to confirm ('+i.n+' documents)'}}
   else if(stats(p).g>0){c='bad';t='Not in AP';tip='Received here, but not found in the AP Tracker'}else return '';
   return `<span class="apb ${c}" title="${esc(tip)}">${t}</span>`}
-const apOk=p=>{const f=$('#apf').value;if(!f)return true;const i=apInfo(p),pn=pendOn&&PEND.has(String(p.po==null?'':p.po).trim());
+const apOk=p=>{if(!agOk(p))return false;const f=$('#apf').value;if(!f)return true;const i=apInfo(p),pn=pendOn&&PEND.has(String(p.po==null?'':p.po).trim());
   if(f==='gap')return pendOn?pn:(!i&&stats(p).g>0);if(f==='none')return !i;if(f==='pend')return !!i&&i.n_rx<i.n;if(f==='rx')return !!i&&i.n_rx>=i.n&&!pn;return true};
 const editing=()=>{const a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.closest&&a.closest('table'))};
 /* fill blank "AP Endorsement Date" cells from the AP Tracker (Date Transmitted), matching PO + DR# or SI#. Never overwrites a date that is already there. */
 async function fillAp(manual){if(!window.SBX||!DB){if(manual)toast('Sign in to the database first');return 0}
   let rows;try{rows=await SBX.apdocs()}catch(e){if(manual)toast('Could not read the AP Tracker: '+(e.message||e));return 0}
-  const by=new Map();
-  rows.forEach(r=>{if(!r.date_tx)return;const po=String(r.po).trim();[['d',SPL(r.dr)],['s',SPL(r.si)]].forEach(([t,L])=>L.forEach(v=>{const kk=nkx(v);if(!kk)return;const key=po+'|'+t+'|'+kk,o=by.get(key);if(!o||r.date_tx<o)by.set(key,r.date_tx)}))});
-  /* a receipt with several SI# (022509.022570) gets the AP date only when EVERY one of them is already in the AP Tracker; it takes the latest date */
-  const look=(po,x)=>{po=String(po||'').trim();for(const[t,L]of[['s',SPL(x.si)],['d',SPL(x.dr)]]){if(!L.length)continue;const ds=L.map(v=>by.get(po+'|'+t+'|'+nkx(v)));if(ds.every(Boolean))return ds.sort().pop()}return null};
-  const todo=[];let pd=new Set(),ed=false;
-  D.pos.forEach((p,pi)=>p.lines.forEach(l=>l.rec.forEach(x=>{if(String(x.ap||'').trim())return;const v=look(p.po,x);if(v)todo.push(()=>{x.ap=v;pd.add(pi)})})));
-  deriveEnt(D.ent).forEach(b=>b.lines.forEach(l=>l.rec.forEach(x=>{if(x._i==null||String(D.ent[x._i].ap||'').trim())return;const v=look(b.po,x);if(v)todo.push(()=>{D.ent[x._i].ap=v;ed=true})})));
-  if(!todo.length){if(manual)toast('Nothing new to fill — every matching receipt already has an AP date');return 0}
-  snap();todo.forEach(f=>f());pd.forEach(i=>touch(i));if(ed)touch(null);render();toast('Filled '+todo.length+' AP Endorsement Date(s) from the AP Tracker — Undo if needed');return todo.length}
+  /* AP Endorsement Date = Date Transmitted in the AP Tracker; Received By = the AP person who received the SI/DR (AP Tracker "Received by") */
+  const byD=new Map(),byR=new Map(),add=(m,key,v,keep)=>{const o=m.get(key);if(o==null||keep(v,o))m.set(key,v)};
+  rows.forEach(r=>{const po=String(r.po).trim();[['d',SPL(r.dr)],['s',SPL(r.si)]].forEach(([t,L])=>L.forEach(v=>{const kk=nkx(v);if(!kk)return;const key=po+'|'+t+'|'+kk;
+    if(r.date_tx)add(byD,key,r.date_tx,(n,o)=>n<o);if(r.rx_by)add(byR,key,String(r.rx_by).trim(),()=>false)}))});
+  /* several SI# in one receipt: filled only when EVERY one is in the AP Tracker (latest date; names joined) */
+  const look=(m,po,x,join)=>{po=String(po||'').trim();for(const[t,L]of[['s',SPL(x.si)],['d',SPL(x.dr)]]){if(!L.length)continue;const ds=L.map(v=>m.get(po+'|'+t+'|'+nkx(v)));if(ds.every(Boolean))return join(ds)}return null};
+  const lD=(po,x)=>look(byD,po,x,a=>a.sort().pop()),lR=(po,x)=>look(byR,po,x,a=>[...new Set(a)].join(' / '));
+  const todo=[];let pd=new Set(),ed=false,nd=0,nr=0;
+  const chk=(o,po,x,mark)=>{if(!String(o.ap||'').trim()){const v=lD(po,x);if(v){nd++;todo.push(()=>{o.ap=v;mark()})}}
+    if(!String(o.rb||'').trim()){const v=lR(po,x);if(v){nr++;todo.push(()=>{o.rb=v;mark()})}}};
+  D.pos.forEach((p,pi)=>p.lines.forEach(l=>l.rec.forEach(x=>chk(x,p.po,x,()=>pd.add(pi)))));
+  deriveEnt(D.ent).forEach(b=>b.lines.forEach(l=>l.rec.forEach(x=>{if(x._i!=null)chk(D.ent[x._i],b.po,x,()=>ed=true)})));
+  if(!todo.length){if(manual)toast('Nothing new to fill — matching receipts already have the AP date and Received By');return 0}
+  snap();todo.forEach(f=>f());pd.forEach(i=>touch(i));if(ed)touch(null);render();
+  toast('From the AP Tracker: '+[nd?nd+' AP date(s)':'',nr?nr+' Received By name(s)':''].filter(Boolean).join(' and ')+' filled — Undo if needed');return todo.length}
 const dlgOpen=()=>!!document.querySelector('div[style*="z-index:9"] .pvbox');
 async function loadAp(force){if(!window.SBX||!DB)return;if(!force&&Date.now()-apAt<60000)return;apAt=Date.now();
   try{const rows=await SBX.ap();AP=new Map(rows.map(r=>[String(r.po).trim(),r]));apOn=true;try{let pl=null;try{pl=await SBX.plan()}catch(e){pl=null}PLAN=new Map();PIDX=new Map();PEND=new Map();planOn=false;
       if(pl){pl.forEach(x=>{const k=String(x.po).trim();if(!PLAN.has(k))PLAN.set(k,[]);PLAN.get(k).push(x);
           SPL(x.si).forEach(t=>PIDX.set(k+'|S|'+nkx(t),x));if(!SPL(x.si).length)SPL(x.dr).forEach(t=>PIDX.set(k+'|D|'+nkx(t),x));
           if(!x.proof){if(!PEND.has(k))PEND.set(k,[]);PEND.get(k).push(x)}});planOn=true;pendOn=true}
-      else{const pr=await SBX.pending();pr.forEach(x=>{const k=String(x.po).trim();if(!PEND.has(k))PEND.set(k,[]);PEND.get(k).push(x)});pendOn=true}}catch(e){pendOn=false;planOn=false;PEND=new Map();PLAN=new Map();PIDX=new Map()}$('#apf').hidden=false;if(!editing())render();try{if(!editing()&&!dlgOpen()&&!busy&&!cfOpen){const n=await fillAp(false);if(!n&&SBX.role==='owner'&&!window.__apn){window.__apn=1;try{const r=await SBX.syncAp(false);if(r.length)toast(new Set(r.map(x=>x.ap_id)).size+' AP Tracker record(s) can be completed from your entries — Settings → Data → Sync to AP Tracker')}catch(e){}}}}catch(e){}}catch(e){apOn=false;$('#apf').hidden=true}}
+      else{const pr=await SBX.pending();pr.forEach(x=>{const k=String(x.po).trim();if(!PEND.has(k))PEND.set(k,[]);PEND.get(k).push(x)});pendOn=true}}catch(e){pendOn=false;planOn=false;PEND=new Map();PLAN=new Map();PIDX=new Map()}$('#apf').hidden=false;if(!editing())render();try{if(!editing()&&!dlgOpen()&&!busy&&!cfOpen){const n=await fillAp(false);}}catch(e){}}catch(e){apOn=false;$('#apf').hidden=true}}
 const xc=o=>X.map(L=>`<td class="x" data-l="${L}">${esc(o&&o[L])}</td>`).join('');
 function blockHTML(b,pi,ent,cls){
   const s=stats(b),span=b.lines.reduce((a,l)=>a+l.rec.length,0);let h='',first=true;
@@ -407,34 +459,35 @@ function blockHTML(b,pi,ent,cls){
     const lc=(c,t,f,raw,ty)=>`<td rowspan="${m}" class="${c}">${ent?inp(`e.${l._i}.${f}`,raw,ty):inp(`p.${pi}.${li}.${f}`,l[f],ty)}</td>`;
     l.rec.forEach((x,k)=>{const a=ent?`e.${x._i}.`:`p.${pi}.${li}.${k}.`,key=ent?`e.${x._i}`:(k?'':`p.${pi}.${li}`),xo=ent?D.ent[x._i].x:(k?null:l.x);
       h+=`<tr class="${cls}${first?' top':''}" ${key?`data-k="${key}"`:''}>`;
-      if(!k)h+=`<td rowspan="${m}" class="c" style="white-space:nowrap"><input type="checkbox" class="sel" data-s="${sk(l,li)}" data-pk="${pk}"${SEL.has(sk(l,li))?' checked':''}><button type="button" class="ld" data-s="${sk(l,li)}" title="Delete this line" aria-label="Delete this line">🗑</button></td>`;
+      if(!k)h+=`<td rowspan="${m}" class="c" style="white-space:nowrap"><input type="checkbox" class="sel" data-s="${sk(l,li)}" data-pk="${pk}"${SEL.has(sk(l,li))?' checked':''}><button type="button" class="ld" data-s="${sk(l,li)}" title="Delete this line" aria-label="Delete this line">🗑</button><button type="button" class="ldx adl" data-ad="${ent?'e:'+l.rec[m-1]._i:'p:'+pi+':'+li}" title="Add a delivery to this line (its own DR / SI# / RR row)" aria-label="Add delivery">＋</button></td>`;
       if(first){const r=(c,t,f,raw)=>`<td rowspan="${span}" class="${c}">${c==='c b'?pcb:''}${ent?inp(`e.${b._i}.${f}`,raw,'text'):inp(`p.${pi}.${f}`,b[f],'text')}${c==='c b'?apb(b):''}</td>`;
         h+=r('c b',esc(b.po),'po',D.ent[b._i]?.po)+r('',esc(b.supplier),'supplier',D.ent[b._i]?.supplier)+r('c',esc(b.bu),'bu',D.ent[b._i]?.bu)+r('c',esc(b.buyer),'buyer',D.ent[b._i]?.buyer)}
       if(!k)h+=lc('c',l.ln,'ln',E&&(E.ln??l.ln))+lc('',esc(l.item),'item',E&&E.item)+lc('d',esc(l.desc),'desc',E&&E.desc)+lc('r',f0(l.qty),'qty',E&&E.qty)+lc('c',esc(l.uom),'uom',E&&E.uom)+lc('r',fmt(l.price),'price',E&&E.price)+`<td rowspan="${m}" class="r">${fmt(l.ordered)}</td>`;
       if(first)h+=`<td rowspan="${span}" class="r b">${fmt(s.j)}</td>`;
       const amt=x.amt&&typeof x.amt==='object'?(x.q||0)*l.price:x.amt;
       h+=`<td>${inp(a+'q',x.q,'text','r')}</td><td>${inp(a+'d',x.d,'date')}</td><td>${inp(a+'dr',x.dr)}</td><td>${inp(a+'si',x.si)}${rowChip(b.po,x)}</td><td class="r">${amt?fmt(amt):'-'}</td><td>${inp(a+'rr',x.rr)}</td>`;
-      if(!k)h+=`<td rowspan="${m}" class="r${bal>0?' bal':''}">${bal?f0(bal):'-'}</td>`;
+      if(!k){const gq=got(l),lp=l.qty?gq/l.qty:0,ov=gq>l.qty&&l.qty>0,ck=ent?'e:'+l._i:'p:'+pi+':'+li,cl=l.cl,bc=ov?'var(--red)':(lp>=1||cl)?'var(--green)':'#e0a800';
+        h+=`<td rowspan="${m}" class="r${bal>0&&!cl?' bal':''}${ov&&!l.ovr?' bad':''}"${ov&&l.ovr?` title="Over-delivery accepted: ${esc(l.ovr)}"`:cl?` title="Balance closed ${esc(cl.d||'')}: ${esc(cl.why||'')}"`:''}>${cl&&bal>0?`<s>${f0(bal)}</s>`:bal?f0(bal):'-'}<div class="lp"><i style="width:${Math.min(100,lp*100)}%;background:${bc}"></i></div><small>${(lp*100).toFixed(0)}%${cl?' · closed':''}${ov?(l.ovr?' · over ✓':' · OVER'):''}${bal>0?`<button type="button" class="ldx" data-cl="${ck}" title="${cl?'Reopen this balance':'Close the remaining balance (supplier will not deliver it)'}">${cl?'↺':'⊘'}</button>`:''}</small></td>`}
       h+=`<td>${inp(a+'ap',x.ap,'date')}</td><td>${inp(a+'rb',x.rb)}</td>`;
-      if(first){const c=s.und===0?'ok':s.und>=1?'bad':'warn';h+=`<td rowspan="${span}" class="c b">${(s.pct*100).toFixed(1)}%</td><td rowspan="${span}" class="c b ${c}">${(s.und*100).toFixed(1)}%</td>`}
+      if(first){const c=s.und===0?'ok':s.und>=1?'bad':'warn',ag=poAge(s);h+=`<td rowspan="${span}" class="c b${s.ov?' bad':''}">${(s.pct*100).toFixed(1)}%<div class="lp"><i style="width:${Math.min(100,s.pct*100)}%;background:${s.ov?'var(--red)':s.pct>=0.99999?'var(--green)':'#e0a800'}"></i></div><small>${s.s}${ag!=null?' · '+ag+' day'+(ag===1?'':'s'):''}</small></td><td rowspan="${span}" class="c b ${c}">${(s.und*100).toFixed(1)}%</td>`}
       h+=xc(xo)+'</tr>';first=false})});
   return h}
 function blankRow(i){const e=D.ent[i],I=(f,t)=>`<td>${inp(`e.${i}.${f}`,e[f],t)}</td>`;
   return `<tr class="bl" data-k="e.${i}"><td></td>`+['po','supplier','bu','buyer','ln','item','desc','qty','uom','price'].map(f=>I(f)).join('')+'<td></td><td></td>'+I('q')+I('d','date')+I('dr')+I('si')+'<td></td>'+I('rr')+'<td></td>'+I('ap','date')+I('rb')+'<td></td><td></td>'+xc(null)+'</tr>'}
-function issues(){const o=[],seen={};
+let _is=null;const is0=()=>_is||(_is=issues());function issues(){const o=[],seen={},rrPo=new Map(),siRr=new Map();let stk=0;
   D.pos.map(p=>[p,0]).concat(deriveEnt(D.ent).map(p=>[p,1])).forEach(([p,ent])=>p.lines.forEach(l=>{const w=`PO ${p.po||'(blank)'} line ${l.ln}`,k=(p.po||'#'+p._i)+'|'+l.ln;
     if(seen[k])o.push(w+': duplicate line number');seen[k]=1;
     if(!p.po)o.push(w+': PO # missing');
     if(l.calc&&(!l.item||!l.qty||!l.price))o.push(w+': incomplete entry (item, quantity and price needed)');
-    if(Math.abs(l.ordered-l.qty*l.price)>.005)o.push(w+': Ordered ≠ Quantity × Price');if(l.calc&&D.ent[l._i].ord!=null&&Math.abs(D.ent[l._i].ord-l.ordered)>.005)o.push(w+': pasted Ordered differs from Quantity × Price (the formula value is used)');
-    if(got(l)>l.qty)o.push(w+': received more than ordered');
+    if(Math.abs(l.ordered-l.qty*l.price)>.005)o.push(w+': Ordered ≠ Quantity × Price');if(l.calc&&D.ent[l._i].ord!=null&&Math.abs(D.ent[l._i].ord-l.ordered)>.005)o.push(w+': pasted Ordered differs from Quantity × Price by more than price rounding — check the quantity or price');
+    if(got(l)>l.qty&&!l.ovr)o.push(w+': received more than ordered — add a remark or correct the quantity');{const ss=new Set();l.rec.forEach(x=>SPL(x.si).forEach(t=>{const k2=nkx(t);if(ss.has(k2))o.push(w+': SI# '+t+' entered twice on this line');ss.add(k2)}))}
     l.rec.forEach(x=>{if(x.q&&x.amt==null)o.push(w+': SI Amount formula missing');
       if(typeof x.amt==='number'&&Math.abs(x.amt-(x.q||0)*l.price)>.005)o.push(w+': SI Amount ≠ Qty Received × Price');
-      if(x.q&&x.si==null)o.push(w+': SI# missing');{const S=SPL(x.si),R=SPL(x.rr);if(S.length>1&&R.length>1&&S.length!==R.length)o.push(w+': '+S.length+' SI# but '+R.length+' RR# in one receipt (SI '+x.si+' / RR '+x.rr+') — the AP sync pairs them in order, so it needs one RR per SI')}})}));return o}
+      if(x.q&&x.si==null)o.push(w+': SI# missing');if(SPL(x.si).length>1)stk++;{const pk=String(p.po||'#'+p._i);SPL(x.si).forEach(t=>{const kk=pk+'|'+nkx(t);if(!siRr.has(kk))siRr.set(kk,{po:p.po,si:t,m:new Map()});const e=siRr.get(kk),rk=SPL(x.rr).map(nkx).sort().join('+')||'(none)';if(!e.m.has(rk))e.m.set(rk,{rr:x.rr==null?'none':String(x.rr),ln:[]});e.m.get(rk).ln.push(l.ln)})}{const S=SPL(x.si),R=SPL(x.rr);if(S.length>1&&R.length>1&&S.length!==R.length)o.push(w+': '+S.length+' SI# but '+R.length+' RR# in one receipt (SI '+x.si+' / RR '+x.rr+') — the AP sync pairs them in order, so it needs one RR per SI')}})}));siRr.forEach(e=>{if(e.m.size<2)return;const v=[...e.m.values()].sort((a,b)=>b.ln.length-a.ln.length);o.push('PO '+e.po+': SI# '+e.si+' has RR '+v.map(x=>x.rr+' (line'+(x.ln.length>1?'s ':' ')+x.ln.join(', ')+')').join(' and RR ')+' — one SI# normally has one RR')});if(stk)o.unshift(stk+' receipt(s) have several SI# in one cell — Settings → Split stacked gives each invoice its own delivery row');return o}
 /* ---- summary report ---- */
 let VIEW='ent';
 const matchP=p=>{const q=$('#q').value.toLowerCase(),bu=$('#bu').value,by=$('#bysel').value,st=$('#st').value;return apOk(p)&&!(bu&&buKey(p.bu)!==bu||by&&(by==='__none'?!!p.buyer:p.buyer!==by)||st&&stats(p).s!==st||q&&![p.po,p.supplier,p.bu,...p.lines.flatMap(l=>[l.item,l.desc,...l.rec.flatMap(x=>[x.dr,x.si])])].join(' ').toLowerCase().includes(q))};
-function sumHTML(){const R=summaryRows(D.pos.concat(deriveEnt(D.ent)).filter(matchP)),A=sumAgg(R),n0=v=>fmt(v,0),n2=v=>fmt(v,2),pc=v=>(v*100).toFixed(1)+'%',cl=v=>v===0?'ok':v>=1?'bad':'warn',sc={Complete:'ok',Pending:'bad',Partial:'warn'};
+function sumHTML(){const R=summaryRows(D.pos.concat(deriveEnt(D.ent)).filter(matchP)),A=sumAgg(R),n0=v=>fmt(v,0),n2=v=>fmt(v,2),pc=v=>(v*100).toFixed(1)+'%',cl=v=>v===0?'ok':v>=1?'bad':'warn',sc={Complete:'ok',Pending:'bad',Partial:'warn','Over-delivered':'bad','Closed short':'ok'};
   const dt=s=>s?`${s.slice(5,7)}/${s.slice(8)}/${s.slice(0,4)}`:'',th=a=>'<tr>'+a.map(h=>`<th>${h}</th>`).join('')+'</tr>';
   const pcs=(r)=>`<td class="c b pb" style="--p:${r.pct*100}%">${pc(r.pct)}</td><td class="c b ${cl(r.undp)}">${pc(r.undp)}</td>`;
   const nums=r=>`<td class="c">${r.lines}</td><td class="c">${r.lc}</td><td class="c">${r.lo}</td><td class="r">${n0(r.q)}</td><td class="r">${n0(r.g)}</td><td class="r">${n0(r.bal)}</td><td class="r b">${n2(r.tot)}</td><td class="r">${n2(r.rv)}</td><td class="r">${n2(r.und)}</td>`;
@@ -447,30 +500,39 @@ function sumHTML(){const R=summaryRows(D.pos.concat(deriveEnt(D.ent)).filter(mat
     h+=`<tr class="tt"><td>TOTAL</td><td class="c">${A.n}</td>${nums(A)}${pcs(A)}</tr></tbody></table>`});
   return h+'<div class="note">Export Excel adds this report as the “Summary Report” sheet with live formulas linked to the entries sheet. Filters above apply to this view.</div>'}
 function buyHTML(){const R=summaryRows(D.pos.concat(deriveEnt(D.ent))),L=BYL(),names=L.map(b=>b.n);R.forEach(r=>{if(r.buyer&&!names.includes(r.buyer))names.push(r.buyer)});
-  const pc=v=>(v*100).toFixed(1)+'%',rows=names.concat(['']).map(n=>{const rs=R.filter(r=>(r.buyer||'')===n);return{n,role:(L.find(b=>b.n===n)||{}).r||'',a:sumAgg(rs),open:rs.filter(r=>r.st!=='Complete').length}}).filter(x=>x.n||x.a.n),A=sumAgg(R);
+  const pc=v=>(v*100).toFixed(1)+'%',rows=names.concat(['']).map(n=>{const rs=R.filter(r=>(r.buyer||'')===n);return{n,role:(L.find(b=>b.n===n)||{}).r||'',a:sumAgg(rs),open:rs.filter(r=>r.st!=='Complete'&&r.st!=='Closed short').length}}).filter(x=>x.n||x.a.n),A=sumAgg(R);
   const tr=(x,k)=>`<tr${k?` data-by="${esc(k)}" title="Click to open these POs in the grid"`:''}><td class="b">${esc(x.n||'(Unassigned)')}</td><td>${esc(x.role)}</td><td class="c">${x.a.n}</td><td class="c">${x.open}</td><td class="c">${x.a.lines}</td><td class="r">${fmt(x.a.q,0)}</td><td class="r">${fmt(x.a.g,0)}</td><td class="r b">${fmt(x.a.tot,2)}</td><td class="r">${fmt(x.a.rv,2)}</td><td class="r">${fmt(x.a.und,2)}</td><td class="c b pb" style="--p:${x.a.pct*100}%">${pc(x.a.pct)}</td></tr>`;
-  return `<h3>Buyer log <button data-mb style="margin-left:12px">Manage buyers</button></h3><table><thead><tr>${['Buyer','Role','POs','Open POs','Lines','Qty Ordered','Qty Received','Total Ordered','Received Amount','Undelivered Amount','% Delivered'].map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(x=>tr(x,x.n||'__none')).join('')}${tr({n:'All buyers',role:'',a:A,open:R.filter(r=>r.st!=='Complete').length},'')}</tbody></table><p style="color:var(--mut)">Click a buyer to see their POs in the grid. To tag POs: tick their lines, then Home → Assign buyer.</p>`}
-function setView(v){VIEW=v;$('#ew').hidden=v!=='ent';$('#sm').hidden=v!=='sum';$('#byw').hidden=v!=='buy';document.querySelectorAll('div.chk').forEach(x=>x.hidden=v!=='ent');$('#tE').classList.toggle('on',v==='ent');$('#tS').classList.toggle('on',v==='sum');$('#tB').classList.toggle('on',v==='buy');render()}
+  return `<h3>Buyer log <button data-mb style="margin-left:12px">Manage buyers</button></h3><table><thead><tr>${['Buyer','Role','POs','Open POs','Lines','Qty Ordered','Qty Received','Total Ordered','Received Amount','Undelivered Amount','% Delivered'].map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(x=>tr(x,x.n||'__none')).join('')}${tr({n:'All buyers',role:'',a:A,open:R.filter(r=>r.st!=='Complete'&&r.st!=='Closed short').length},'')}</tbody></table><p style="color:var(--mut)">Click a buyer to see their POs in the grid. To tag POs: tick their lines, then Home → Assign buyer.</p>`}
+function setView(v){VIEW=v;$('#ew').hidden=v!=='ent';$('#sm').hidden=v!=='sum';$('#byw').hidden=v!=='buy';$('.fbar').hidden=v==='buy';$('#tE').classList.toggle('on',v==='ent');$('#tS').classList.toggle('on',v==='sum');$('#tB').classList.toggle('on',v==='buy');render()}
 $('#tE').onclick=()=>setView('ent');$('#tS').onclick=()=>setView('sum');$('#tB').onclick=()=>setView('buy');
 $('#byw').addEventListener('click',e=>{if(e.target.closest('[data-mb]'))return window.buyManage&&buyManage();const r=e.target.closest('[data-by]');if(r){$('#bysel').value=r.dataset.by;setView('ent')}});
 $('#bysel').addEventListener('change',()=>render());
+$('#kp').addEventListener('click',e=>{const k=e.target.closest('[data-f]');if(!k)return;const[f,v]=k.dataset.f.split(':');
+  if(f==='all'){['#q','#bu','#st','#ag','#apf'].forEach(s=>$(s).value='')}else{const el=$('#'+f);el.value=el.value===v?'':v}SEL.clear();render()});
+$('#fx').onclick=()=>{['#q','#bu','#st','#ag','#apf'].forEach(s=>$(s).value='');$('#bysel').value='';SEL.clear();render()};
+$('#ckb').onclick=()=>{const d=$('#ck');d.hidden=!d.hidden;d.open=!d.hidden};
+{const r=$('#rib'),f=()=>document.documentElement.style.setProperty('--ribh',(r?r.offsetHeight:0)+'px');f();try{new ResizeObserver(f).observe(r)}catch(e){}}
 $('#bytabs').addEventListener('click',e=>{const b=e.target.closest('[data-bt]');if(!b)return;$('#bysel').value=b.dataset.bt;SEL.clear();render()});
-function render(){
+function render(){_is=null;
   X=xcols();$('#hd').innerHTML='<th><input type="checkbox" id="sa" title="Select all shown"></th>'+HD.map(h=>`<th${HT[h]?` title="${HT[h]}"`:''}>${h}</th>`).join('')+X.map(L=>`<th><input class="xh" data-h="${L}" placeholder="${L}" value="${esc(D.xh[L])}"></th>`).join('');
   const q=$('#q').value.toLowerCase(),bu=$('#bu').value,by=$('#bysel').value,st=$('#st').value,flt=q||bu||by||st||$('#apf').value,EN=deriveEnt(D.ent);
   const bus=[...new Set(D.pos.concat(EN).map(p=>buKey(p.bu)).filter(Boolean))].sort();$('#bu').innerHTML='<option value="">All BU</option>'+bus.map(b=>`<option${b===bu?' selected':''}>${esc(b)}</option>`).join('');
-  {const nm=BYL().map(b=>b.n);D.pos.concat(EN).forEach(p=>{if(p.buyer&&!nm.includes(p.buyer))nm.push(p.buyer)});$('#bysel').innerHTML='<option value="">All buyers</option>'+nm.map(b=>`<option${b===by?' selected':''}>${esc(b)}</option>`).join('')+`<option value="__none"${by==='__none'?' selected':''}>(Unassigned)</option>`;{const all=D.pos.concat(EN),cn=b=>all.filter(p=>(p.buyer||'')===b).length,tb=(v,t,c)=>`<button data-bt="${esc(v)}" class="${by===v?'on':''}">${esc(t)}<span>${c}</span></button>`;$('#bytabs').innerHTML=tb('','All',all.length)+nm.map(b=>tb(b,b,cn(b))).join('')+tb('__none','Unassigned',cn(''));$('#bytabs').hidden=VIEW!=='ent'}
+  {const nm=BYL().map(b=>b.n);D.pos.concat(EN).forEach(p=>{if(p.buyer&&!nm.includes(p.buyer))nm.push(p.buyer)});$('#bysel').innerHTML='<option value="">All buyers</option>'+nm.map(b=>`<option${b===by?' selected':''}>${esc(b)}</option>`).join('')+`<option value="__none"${by==='__none'?' selected':''}>(Unassigned)</option>`;{const all=D.pos.concat(EN),cn=b=>all.filter(p=>(p.buyer||'')===b).length,tb=(v,t,c)=>`<button data-bt="${esc(v)}" class="${by===v?'on':''}">${esc(t)}<span>${c}</span></button>`;$('#bytabs').innerHTML='<span class="bylab">Buyer</span>'+tb('','All',all.length)+nm.map(b=>tb(b,b,cn(b))).join('')+tb('__none','Unassigned',cn(''));$('#bytabs').hidden=VIEW!=='ent'}
   $('#bylist').innerHTML=BYL().map(b=>`<option value="${esc(b.n)}">${esc(b.r)}</option>`).join('')}
-  let items=[],n=0,T={j:0,v:0,q:0,g:0,c:0};
+  let items=[],n=0,T={j:0,v:0,q:0,g:0,c:0,ej:0,ov:0,ag:0,pa:0,pe:0,ln:0};
   const ok=p=>{const s=stats(p);return apOk(p)&&!(bu&&buKey(p.bu)!==bu||by&&(by==='__none'?!!p.buyer:p.buyer!==by)||st&&s.s!==st||q&&![p.po,p.supplier,p.bu,...p.lines.flatMap(l=>[l.item,l.desc,...l.rec.flatMap(x=>[x.dr,x.si])])].join(' ').toLowerCase().includes(q))};
   D.pos.forEach((p,pi)=>{if(!ok(p))return;items.push([-1,()=>blockHTML(p,pi,0,'p'+pi%2),p])});
   EN.forEach((p,k)=>{if(ok(p))items.push([p._i,()=>blockHTML(p,0,1,'p'+(D.pos.length+k)%2),p])});
   if(!(q||bu||st))D.ent.forEach((e,i)=>{if(isBlank(e))items.push([i,()=>blankRow(i)])});
   const ordered=RV.pre(items.filter(a=>a[0]<0).concat(items.filter(a=>a[0]>=0).sort((a,b)=>a[0]-b[0])));
-  $('#tb').innerHTML=ordered.map(a=>{if(a[2]){const s=stats(a[2]);n++;T.j+=s.j;T.v+=s.v;T.q+=s.q;T.g+=s.g;T.c+=s.s==='Complete'}return RV.vis(a)?a[1]():''}).join('');
+  $('#tb').innerHTML=ordered.map(a=>{if(a[2]){const s=stats(a[2]);n++;T.j+=s.j;T.v+=s.v;T.q+=s.q;T.g+=s.g;T.ej+=s.ej;T.c+=s.s==='Complete'||s.s==='Closed short';T.ov+=s.s==='Over-delivered';T.pa+=s.s==='Partial';T.pe+=s.s==='Pending';T.ln+=a[2].lines.length;const ag=poAge(s);if(ag!=null&&ag>7)T.ag++}return RV.vis(a)?a[1]():''}).join('');
   $('#em').hidden=ordered.length>0;if(VIEW==='sum')$('#sm').innerHTML=sumHTML();if(VIEW==='buy')$('#byw').innerHTML=buyHTML();$('#bun').disabled=!UH.length;$('#bre').disabled=!RH.length;selUI();
-  $('#kp').innerHTML=[['Purchase orders',n],['Complete POs',T.c],['Ordered value',fmt(T.j)],['Received value',fmt(T.v)],['Qty delivered',(T.q?T.g/T.q*100:0).toFixed(1)+'%']].map(([a,b])=>`<div class="k"><b>${b}</b><span>${a}</span></div>`).join('');
-  const is=issues();$('#cs').textContent=is.length?`⚠ Formula check: ${is.length} item(s) need attention`:'✔ Formula check: every entry follows the sheet formulas';$('#cl').innerHTML=is.slice(0,200).map(i=>`<li>${esc(i)}</li>`).join('');
+  {const pc=T.ej?T.v/T.ej*100:0,stf=$('#st').value,agf=$('#ag').value,K=(lab,val,sub,cls,f,on)=>`<button type="button" class="k ${cls}${on?' on':''}"${f?` data-f="${f}" title="Click to show only these POs"`:''}><span>${lab}</span><b>${val}</b>${sub?`<em>${sub}</em>`:''}</button>`;
+  $('#kp').innerHTML=K('Purchase orders',f0(n),f0(T.ln)+' lines','kn','all',false)+K('Complete',f0(T.c),n?(T.c/n*100).toFixed(0)+'% of POs':'','kg','st:Complete',stf==='Complete')+K('Partial',f0(T.pa),'delivery ongoing','ka','st:Partial',stf==='Partial')+K('Pending',f0(T.pe),'nothing received','kr','st:Pending',stf==='Pending')
+   +K('Partial &gt; 7 days',f0(T.ag),'follow up','ka','ag:7',agf==='7')+K('Over-delivered',f0(T.ov),T.ov?'needs remark / review':'none','kr','st:Over-delivered',stf==='Over-delivered')
+   +`<div class="k kv wide"><span>Delivered (value)</span><b>${pc.toFixed(1)}%</b><div class="lp"><i style="width:${Math.min(100,pc)}%;background:var(--green)"></i></div><em>₱${fmt(T.v)} received of ₱${fmt(T.j)} ordered</em></div>`}
+  {const ni=is0().length;$('#ckb').textContent=ni?'⚠ '+ni+' check'+(ni>1?'s':''):'✔ Checks OK';$('#ckb').className='ghost '+(ni?'warnb':'okb')}
+  const is=is0();$('#cs').textContent=is.length?`⚠ Formula check: ${is.length} item(s) need attention`:'✔ Formula check: every entry follows the sheet formulas';$('#cl').innerHTML=is.slice(0,200).map(i=>`<li>${esc(i)}</li>`).join('');
   $('#ft').textContent=`${D.pos.length} original POs (${D.pos.reduce((a,p)=>a+p.lines.length,0)} lines) + ${EN.length} new PO(s). Always 100 blank entry rows and 100 blank columns (from W). New rows use: Ordered = Qty × Price, SI Amount = Qty Received × Price, Balance = Qty − Received, Total/%Delivered/%Undelivered per PO.`}
 /* ---- auto-save: shared database (when available) + this browser ---- */
 let DB=null,dirty=new Set(),entDirty=false,tm,busy=false,again=false,chunks=0,posDocs=0,known=null,cfOpen=false;
@@ -526,7 +588,7 @@ function conflict(){stamp('NOT saved — someone else changed the data');if(cfOp
     else{DB=null;known=null;stamp('this browser (not synced)')}}}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkRemote()});setInterval(checkRemote,60000);
 /* ---- editing ---- */
-const NUM=['qty','price','q','rr','ln','ord'];
+const NUM=['qty','price','q','ln','ord'];
 $('table').addEventListener('change',e=>{const t=e.target,v=t.value.trim();if(t.dataset.h||t.dataset.a)snap();
   if(t.dataset.h){if(v)D.xh[t.dataset.h]=v;else delete D.xh[t.dataset.h];touch();return}
   if(!t.dataset.a)return;const p=t.dataset.a.split('.');
@@ -535,8 +597,8 @@ $('table').addEventListener('change',e=>{const t=e.target,v=t.value.trim();if(t.
     if(p.length===4&&(f==='qty'||f==='price')&&typeof o.qty==='number'&&typeof o.price==='number')o.ordered=o.qty*o.price;
     touch(p[1])}
   else if(p[0]==='p'){const x=D.pos[p[1]].lines[p[2]].rec[p[3]],f=p[4];
-    if(f==='q'||f==='rr'){if(v!==''&&isNaN(num(v)))return render();x[f]=v===''?null:num(v)}
-    else if(f==='d'||f==='ap'||f==='rb')x[f]=v||null;else x[f]=v===''?null:(/^\d+$/.test(v)&&typeof x[f]!=='string')?Number(v):v;
+    if(f==='q'){if(v!==''&&isNaN(num(v)))return render();x[f]=v===''?null:num(v)}
+    else if(f==='d'||f==='ap'||f==='rb')x[f]=v||null;else x[f]=v===''?null:dtx(v);
     touch(p[1])}
   else{let r=D.ent[p[1]],f=p[2];const i=+p[1],E=D.ent,nb=j=>j>0&&!isBlank(E[j-1]);
     if(['po','supplier','bu','buyer'].includes(f)&&v!==''&&isBlank(E[i])&&nb(i)){let j=i-1;
@@ -544,10 +606,33 @@ $('table').addEventListener('change',e=>{const t=e.target,v=t.value.trim();if(t.
       if(f!=='po'||em(E[j].po)){E[j][f]=v;t.value='';r=null}}
     if(r){
     if(NUM.includes(f)){if(v!==''&&isNaN(num(v)))return render();r[f]=v===''?null:num(v)}
-    else if(f==='dr'||f==='si')r[f]=v===''?null:(/^\d+$/.test(v)?Number(v):v);else r[f]=v||null}
+    else if(f==='dr'||f==='si'||f==='rr')r[f]=v===''?null:dtx(v);else r[f]=v||null}
     {const by=$('#bysel').value;if(r&&by&&by!=='__none'&&em(r.buyer)&&(!em(r.po)||Number(r.ln)===1))r.buyer=by}
-    topup();touch()}
+    if(r&&['qty','price','ord'].includes(f))fixOrd(r);topup();touch()}
+  if(v!==''&&['q','si'].includes(p[p.length-1])&&!postCheck(p))return;
   render()});
+/* find the PO line + receipt behind an edited cell */
+function lineOf(p){if(p[0]==='p'){const P=D.pos[p[1]],l=P&&P.lines[p[2]];return l?{po:P.po,bu:P.bu,l,x:l.rec[p[3]],own:l,pk:p[1]}:null}
+  const i=+p[1];for(const b of deriveEnt(D.ent))for(const l of b.lines){const x=l.rec.find(r=>r._i===i);if(x)return{po:b.po,bu:b.bu,l,x,own:D.ent[l._i],pk:null}}return null}
+function undoEdit(m){if(UH.length)restore(UH.pop());else render();toast(m)}
+function postCheck(p){const L=lineOf(p);if(!L)return true;const f=p[p.length-1],{l,x}=L,lab=`PO ${L.po||'(no PO)'} line ${l.ln}`;
+  if(f==='q'){const g=got(l);if(l.qty>0&&g>l.qty&&!L.own.ovr){
+      const r=prompt(`${lab}: ${f0(g)} received but only ${f0(l.qty)} ordered (${(g/l.qty*100).toFixed(0)}%).\n\nOver-delivery needs a remark, e.g. "Excess accepted per Buyer Ellaris". Type the remark to keep it, or Cancel to undo the entry:`);
+      if(!r||!r.trim()){undoEdit('Not saved — over-delivery needs a remark');return false}
+      L.own.ovr=r.trim();L.pk!=null?touch(L.pk):touch()}}
+  if(f==='si'){const mine=SPL(x.si).map(nkx),dup=mine.filter(t=>l.rec.some(o=>o!==x&&SPL(o.si).map(nkx).includes(t)));
+    if(dup.length&&!confirm(`${lab}: SI# ${dup.join(', ')} is already entered on this line.\nSave it again anyway?`)){undoEdit('Duplicate SI# not saved');return false}}
+  return true}
+/* add a delivery row under a line / close or reopen a line's balance */
+document.addEventListener('click',e=>{const a=e.target.closest('[data-ad]');if(a)return addDel(a.dataset.ad);const c=e.target.closest('[data-cl]');if(c)closeBal(c.dataset.cl)});
+function addDel(k){const p=k.split(':'),mt=r=>r&&[r.q,r.d,r.dr,r.si,r.rr].every(em);{const L=p[0]==='p'?D.pos[p[1]].lines[p[2]]:null,last=L?L.rec[L.rec.length-1]:D.ent[+p[1]],a=L?`p.${p[1]}.${p[2]}.${L.rec.length-1}.q`:`e.${p[1]}.q`;if(mt(last)){const el=document.querySelector(`input[data-a="${a}"]`);if(el){el.focus();toast('Fill in this empty delivery row first')}return}}snap();SEL.clear();let to;
+  if(p[0]==='p'){const l=D.pos[p[1]].lines[p[2]];l.rec.push({q:null,d:null,dr:null,si:null,rr:null,ap:null,rb:null,amt:{f:'LI'}});to=`p.${p[1]}.${p[2]}.${l.rec.length-1}.q`;touch(p[1])}
+  else{const i=+p[1];D.ent.splice(i+1,0,{nd:1});to=`e.${i+1}.q`;topup();touch()}
+  render();toast('Delivery row added — enter Qty received, Date, DR, SI# and RR');setTimeout(()=>{const el=document.querySelector(`input[data-a="${to}"]`);if(el){el.scrollIntoView({block:'center'});el.focus()}},30)}
+function closeBal(k){const p=k.split(':'),o=p[0]==='p'?D.pos[p[1]].lines[p[2]]:D.ent[+p[1]];if(!o)return;
+  if(o.cl){if(!confirm('Reopen this balance? It will count as undelivered again.'))return;snap();delete o.cl}
+  else{const w=prompt('Close the remaining balance of this line (the supplier will not deliver it).\nReason / reference, e.g. "Cancelled by supplier per Buyer, email 10/27":');if(!w||!w.trim())return;snap();o.cl={why:w.trim(),d:new Date().toISOString().slice(0,10)}}
+  p[0]==='p'?touch(p[1]):touch();render();toastU(o.cl?'Balance closed — the PO now counts only what was received.':'Balance reopened.')}
 const xo=k=>{const p=k.split('.');if(p[0]==='p'){const l=D.pos[p[1]].lines[p[2]];return l.x=l.x||{}}const r=D.ent[p[1]];return r.x=r.x||{}};
 $('#tb').addEventListener('dblclick',e=>{const td=e.target.closest('td.x');if(!td||!td.parentElement.dataset.k)return;td.contentEditable='true';td.focus()});
 $('#tb').addEventListener('focusout',e=>{const td=e.target;if(td.contentEditable!=='true')return;td.contentEditable='false';snap();
@@ -618,7 +703,7 @@ function extractRows(M,hr,map){const lines=[],ups=[],sk=[],txt=v=>v==null?'':Str
     if(po||sup||bu)ctx={po:po||(ctx&&ctx.po)||'',supplier:sup||(ctx&&ctx.supplier)||'',bu:bu||(ctx&&ctx.bu)||'',n:0};
     else if(ctx&&ctx.n&&ln===1)ctx={po:'',supplier:'',bu:'',n:0};
     const rec={},q=nm(g(row,'q')),d=iso(g(row,'d')),dr=txt(g(row,'dr')),si=txt(g(row,'si')),rr=txt(g(row,'rr')),ap=iso(g(row,'ap')),rb=txt(g(row,'rb'));
-    if(q!=null&&!isNaN(q))rec.q=q;if(d)rec.d=d;if(dr)rec.dr=/^\d+$/.test(dr)?Number(dr):dr;if(si)rec.si=/^\d+$/.test(si)?Number(si):si;if(rr)rec.rr=/^\d+$/.test(rr)?Number(rr):rr;if(ap)rec.ap=ap;if(rb)rec.rb=rb;
+    if(q!=null&&!isNaN(q))rec.q=q;if(d)rec.d=d;if(dr)rec.dr=dtx(dr);if(si)rec.si=dtx(si);if(rr)rec.rr=dtx(rr);if(ap)rec.ap=ap;if(rb)rec.rb=rb;
     const qty=nm(g(row,'qty')),price=nm(g(row,'price'));
     if(item||desc||uom||qty!=null||price!=null){
       if(!item){sk.push([R,'no item code']);tgt=null;continue}
@@ -646,7 +731,7 @@ function applyUpd(u){let ch=0,df=false;const same=l=>Number(l.ln)===Number(u.ln)
 function placeLines(lines){let n=0,first=true;
   lines.forEach(L=>{const pi=L.po?D.pos.findIndex(p=>p.po===L.po):-1,P=D.pos[pi];
     if(pi>=0){P.lines.push({ln:L.ln??(P.lines.length?Number(P.lines[P.lines.length-1].ln)+1:1),item:L.item,desc:L.desc||'',uom:L.uom||'',qty:L.qty,price:L.price,ordered:L.qty*L.price,calc:true,rec:L.recs.map(r=>({...blankRec(),...r,amt:{f:'LI'}}))});dirty.add(pi);n++;return}
-    const row0={item:L.item,qty:L.qty,price:L.price,...L.recs[0]};if(L.desc)row0.desc=L.desc;if(L.uom)row0.uom=L.uom;if(L.ln!=null)row0.ln=L.ln;if(L.ord!=null)row0.ord=L.ord;
+    const row0={item:L.item,qty:L.qty,price:L.price,...L.recs[0]};if(L.desc)row0.desc=L.desc;if(L.uom)row0.uom=L.uom;if(L.ln!=null)row0.ln=L.ln;if(L.ord!=null){row0.ord=L.ord;fixOrd(row0)}
     const rows=[row0,...L.recs.slice(1).map(r=>({...r}))],blk=L.po?deriveEnt(D.ent).filter(b=>b.po===L.po).pop():null;
     if(blk){D.ent.splice(Math.max(...blk.lines.flatMap(l=>l.rec.map(x=>x._i)))+1,0,...rows)}
     else{if(L.po)row0.po=L.po;if(L.supplier)row0.supplier=L.supplier;if(L.bu)row0.bu=L.bu;
@@ -745,11 +830,11 @@ const SEQ=['po','supplier','bu','ln','item','desc','uom','qty','price','ord',nul
 function pv(f,v){v=String(v).trim();if(v==='')return;
   if(NUM.includes(f)){const n=Number(v.replace(/["',\s₱$]/g,''));return isNaN(n)?undefined:n}
   if(f==='d'||f==='ap'){const m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);return m?`${m[3]}-${m[1].padStart(2,'0')}-${m[2].padStart(2,'0')}`:/^\d{4}-\d\d-\d\d$/.test(v)?v:undefined}
-  if(f==='dr'||f==='si')return /^\d+$/.test(v)?Number(v):v;return v}
+  if(f==='dr'||f==='si'||f==='rr')return dtx(v);return v}
 function fill(text,i,f0){const rows=text.replace(/\r/g,'').split('\n');while(rows.length&&rows[rows.length-1].trim()==='')rows.pop();
   const g=rows.map(r=>r.split('\t')),k0=SEQ.indexOf(f0);if(k0<0||!g.length)return 0;
   if(g[0].some(c=>/^(description|quantity|price|ordered|uom)$/i.test(c.trim())))g.shift();
-  snap();g.forEach((cells,r)=>{while(D.ent.length<=i+r)D.ent.push({});const e=D.ent[i+r];cells.forEach((c,k)=>{const f=SEQ[k0+k];if(!f)return;const v=pv(f,c);if(v!==undefined)e[f]=v})});
+  snap();g.forEach((cells,r)=>{while(D.ent.length<=i+r)D.ent.push({});const e=D.ent[i+r];cells.forEach((c,k)=>{const f=SEQ[k0+k];if(!f)return;const v=pv(f,c);if(v!==undefined)e[f]=v});fixOrd(e)});
   topup();touch();render();toast(`Filled ${g.length} row(s) in one go`);return g.length}
 const target=e=>{const t=e.target;return t&&t.dataset&&t.dataset.a&&t.dataset.a[0]==='e'&&t.closest('#tb')?t.dataset.a.split('.'):null};
 document.addEventListener('paste',e=>{const fl=[...(e.clipboardData.files||[])].filter(isX);if(fl.length){e.preventDefault();importNewest(fl);return}const p=target(e);if(!p)return;const tx=e.clipboardData.getData('text');if(!/[\t\n]/.test(tx.trim()))return;e.preventDefault();fill(tx,+p[1],p[2])});
@@ -758,7 +843,7 @@ document.addEventListener('drop',async e=>{document.body.classList.remove('dz');
   try{if(f&&/\.xlsx$/i.test(f.name)){const wb=new ExcelJS.Workbook();await wb.xlsx.load(await f.arrayBuffer());const ws=wb.worksheets[0],rows=[];ws.eachRow(r=>{const a=[];for(let c=1;c<=ws.columnCount;c++)a.push(r.getCell(c).text||'');rows.push(a.join('\t'))});tx=rows.join('\n')}
     else if(f)tx=(await f.text()).replace(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/g,/\t/.test(await f.text())?',':'\t');else tx=e.dataTransfer.getData('text')}catch(x){return toast('Could not read the dropped file')}
   fill(tx,+p[1],p[2])});
-['#q','#bu','#st','#apf'].forEach(s=>$(s).addEventListener('input',()=>{SEL.clear();render()}));
+['#q','#bu','#st','#apf','#ag'].forEach(s=>$(s).addEventListener('input',()=>{SEL.clear();render()}));
 var tt;function toast(t){const e=$('#toast');e.textContent=t;e.classList.remove('act');e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2600)}
 function toastU(t){const e=$('#toast');e.textContent=t+' ';const b=document.createElement('button');b.textContent='↶ Undo';b.onclick=()=>{undo();e.classList.remove('on','act')};e.appendChild(b);e.classList.add('on','act');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on','act'),7000)}
 async function out(name,data){let dl=null;try{dl=window.claude&&claude.use?await claude.use('downloads'):null}catch(e){}
@@ -805,7 +890,7 @@ const ask=(t,m,ok,f)=>dlg(t,`<p>${m}</p>`,[['Cancel'],[ok,f,'pri dng']]);
 document.addEventListener('keydown',e=>{const d=$('#rdlg');if(e.key==='Escape'&&d)d.hidden=true;
   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();save()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='h'){e.preventDefault();find()}});
 /* ---- commands ---- */
-const clearF=()=>{$('#q').value='';$('#bu').value='';$('#st').value='';$('#apf').value='';SEL.clear()};
+const clearF=()=>{$('#ag').value='';$('#q').value='';$('#bu').value='';$('#st').value='';$('#apf').value='';SEL.clear()};
 function newRec(){if(VIEW!=='ent')setView('ent');clearF();ST.pg=1e9;render();const i=D.ent.findIndex(e=>isBlank(e)),el=document.querySelector(`#tb input[data-a="e.${i}.po"]`);if(el){el.scrollIntoView({block:'center'});el.focus()}}
 async function save(){clearTimeout(tm);await flush();const t=$('#sv').textContent,n=issues().length;
   T((/unavailable/.test(t)?'⚠ Database unavailable — saved in this browser only':/database/.test(t)?'✔ Saved to the database':'✔ Saved in this browser')+(n?` · ${n} formula check(s) need attention`:''))}
@@ -905,7 +990,7 @@ Data:[G('Sort & Filter',s('Sort the grid (view only — stored order is not chan
     b('⇅','Order','Switch ascending / descending',m(()=>ST.sd*=-1,1),{sm:1,en:()=>!!ST.sk,on:()=>ST.sd<0}),b('🔎','Search','Search PO, supplier, item, DR, SI#',()=>$('#q').focus()),b('⏷','BU','Filter by business unit',foc('#bu'),{sm:1}),b('⏷','Status','Filter by status',foc('#st'),{sm:1}),b('⏷','Buyer','Show one buyer\'s entries (buyer tabs)',()=>{if(VIEW!=='ent')setView('ent');const b=document.querySelector('#bytabs button.on');b&&b.focus()},{sm:1}),b('✖','Clear','Clear search and filters',()=>{clearF();render()},{sm:1})),
   G('Get Data',pb('⇪','Import','Import an Excel, CSV or photo','#bi'),pb('📁','Folder','Import the newest file in a folder','#bl'),b('↻','Refresh','Reload the latest data from the database',refresh)),
   G('Export',b('📊','Excel','Export .xlsx',()=>$('#bx').click()),b('📄','CSV','Export visible records as CSV',csv)),
-  G('Data Tools',b('✔','Validate','Check every entry against the sheet formulas before saving',validate))],
+  G('Data Tools',b('✔','Validate','Check every entry against the sheet formulas before saving',validate),b('✂','Split stacked','One delivery row per SI#/DR/RR',splitDlg),b('⏳','Aging','Partially delivered POs, oldest first delivery',()=>{if(VIEW!=='ent')setView('ent');$('#ag').value='7';$('#ag').dispatchEvent(new Event('input',{bubbles:true}))}))],
 Review:[G('Proofing',b('✔','Formula check','List entries that break the sheet formulas',validate)),G('Change log',b('🕘','Change log','Who changed what, and when (saved in the database)',showLog)),G('History',b('↶','Undo','Undo (Ctrl+Z)',()=>$('#bun').click(),{en:()=>!$('#bun').disabled}),b('↷','Redo','Redo (Ctrl+Y)',()=>$('#bre').click(),{en:()=>!$('#bre').disabled}))],
 View:[G('Views',b('▦','Entries','Entries grid',()=>setView('ent'),{on:()=>VIEW==='ent'}),b('Σ','Summary','Summary report',()=>setView('sum'),{on:()=>VIEW==='sum'}),b('📒','Buyer log','Per-buyer totals',()=>setView('buy'),{on:()=>VIEW==='buy'})),
   G('Zoom',b('➖','Zoom out','Zoom out',()=>$('#zo').click(),{sm:1}),b('➕','Zoom in','Zoom in',()=>$('#zi').click(),{sm:1}),b('100%','','Reset zoom',()=>$('#zp').click(),{sm:1})),
@@ -915,7 +1000,39 @@ View:[G('Views',b('▦','Entries','Entries grid',()=>setView('ent'),{on:()=>VIEW
     b('◀','','Previous page',m(()=>ST.pg--,1),{sm:1,en:()=>ST.ps&&ST.pg>1}),{t:'t',txt:()=>ST.ps?`Page ${ST.pg} of ${PGT}`:'All shown'},b('▶','','Next page',m(()=>ST.pg++,1),{sm:1,en:()=>ST.ps&&ST.pg<PGT}))],
 Settings:[G('Appearance',b('🌗','Dark mode','Switch between light and dark',()=>$('#dm').click(),{on:()=>$('#dm').checked}),b('⛶','Full screen','Full screen (Esc to exit)',()=>$('#bf').click(),{on:()=>fsOn()}),b('🧹','Reset format','Clear display formatting',()=>{Object.assign(ST,DEF,{sk:ST.sk,sd:ST.sd,ps:ST.ps,pg:ST.pg});sv();apply(1)})),
   G('Team',b('👥','Team access','Share this workspace with other buyers',teamDlg)),
-  G('Data',b('⇄','Sync to AP Tracker','See per invoice what is received by AP, waiting, or not yet in the AP Tracker; fill BLANK AP fields (RR #, DR#, date received…) — preview first, nothing overwritten',syncApDlg),b('🔗','Fill AP dates','Fill blank AP Endorsement Dates from the AP Tracker (matches PO + DR/SI#; never overwrites)',()=>fillAp(true)),b('👁','Auto-import','Auto-import whenever the newest file in the chosen folder changes',()=>$('#wt').click(),{on:()=>$('#wt').checked}),b('↺','Reset data','Turned off to protect your saved data',()=>$('#br').click()))]};
+  G('Deliveries',b('✂','Split stacked','Split cells with several SI#/DR/RR (e.g. 0217883/652998) into one delivery row each — you confirm the numbers and qty',splitDlg)),
+  G('Data',b('⇄','AP status','See per invoice what is received by AP, waiting, or not yet in the AP Tracker (view only — transmittals are made in the AP Tracker)',syncApDlg),b('🔗','Fill from AP','Fill blank AP Endorsement Date and Received By from the AP Tracker (matches PO + SI#/DR; never overwrites)',()=>fillAp(true)),b('👁','Auto-import','Auto-import whenever the newest file in the chosen folder changes',()=>$('#wt').click(),{on:()=>$('#wt').checked}),b('↺','Reset data','Turned off to protect your saved data',()=>$('#br').click()))]};
+function splitDlg(){
+  const parts=x=>{const S=SPL(x.si),R=SPL(x.rr),Dd=SPL(x.dr),n=Math.max(S.length,R.length,Dd.length);if(n<2)return null;
+    const ok=[S,R,Dd].every(a=>a.length<=1||a.length===n),pick=(a,k)=>a.length===n?a[k]:a.length===1?a[0]:'';
+    return{n,ok,rows:Array.from({length:n},(_,k)=>({si:pick(S,k),dr:pick(Dd,k),rr:pick(R,k)}))}};
+  const cand=[];
+  D.pos.forEach((P,pi)=>P.lines.forEach((l,li)=>l.rec.forEach((x,k)=>{const s=parts(x);if(s)cand.push({src:'p',pi,li,k,po:P.po,ln:l.ln,qty:l.qty,x,s})})));
+  deriveEnt(D.ent).forEach(b=>b.lines.forEach(l=>l.rec.forEach(x=>{const s=parts(x);if(s)cand.push({src:'e',i:x._i,po:b.po,ln:l.ln,qty:l.qty,x,s})})));
+  if(!cand.length)return dlg('Split stacked numbers','<p>No receipt has several SI#, DR or RR in one cell. Nothing to split.</p>',[['Close']]);
+  const iv=(c,r,f,v)=>`<input data-c="${c}" data-r="${r}" data-f="${f}" value="${esc(v==null?'':v)}">`;
+  let h=`<div style="min-width:min(720px,88vw)"><p style="margin:0 0 6px">Each SI# gets its own delivery row. Numbers are paired <b>in order</b> (1st SI ↔ 1st DR ↔ 1st RR). <b>Check every number against the paper copies</b> and type the <b>Qty received</b> for each delivery — it must add up to the qty in the cell today. Rows with an empty or wrong total are left as they are.</p>
+   <p style="margin:0 0 8px;font-size:12px;color:var(--warn)">RR saved earlier as a number may have lost a trailing zero (RR 215.250 → 215.25). Fix it here if so.</p>
+   <div style="max-height:58vh;overflow:auto"><table id="spl" style="border-collapse:collapse;width:100%;font-size:12px"><tbody>`;
+  cand.forEach((c,ci)=>{h+=`<tr class="hd"><td colspan="5">PO ${esc(c.po||'?')} · line ${esc(c.ln)} · qty in cell: <b>${f0(c.x.q||0)}</b> of ${f0(c.qty)} ordered · today: SI ${esc(c.x.si??'—')} / DR ${esc(c.x.dr??'—')} / RR ${esc(c.x.rr??'—')}${c.s.ok?'':' <span class="er">— different number of SI/DR/RR, please check</span>'} <span class="er" id="se${ci}"></span></td></tr><tr><td style="color:var(--mut)">#</td><td>SI#</td><td>DR</td><td>RR</td><td>Qty received</td></tr>`;
+    c.s.rows.forEach((r,k)=>{h+=`<tr><td style="color:var(--mut)">${k+1}</td><td>${iv(ci,k,'si',r.si)}</td><td>${iv(ci,k,'dr',r.dr)}</td><td>${iv(ci,k,'rr',r.rr)}</td><td>${iv(ci,k,'q','')}</td></tr>`})});
+  h+='</tbody></table></div></div>';
+  dlg('Split stacked numbers ('+cand.length+')',h,[['Cancel'],['Split the checked rows',d=>{
+    const val=(ci,k,f)=>{const e=d.querySelector(`input[data-c="${ci}"][data-r="${k}"][data-f="${f}"]`);return e?e.value.trim():''};
+    const go=[];let bad=0;
+    cand.forEach((c,ci)=>{const rows=c.s.rows.map((_,k)=>({si:val(ci,k,'si'),dr:val(ci,k,'dr'),rr:val(ci,k,'rr'),q:val(ci,k,'q')})),el=d.querySelector('#se'+ci);
+      if(rows.every(r=>r.q===''))return;const qs=rows.map(r=>Number(r.q.replace(/,/g,'')));
+      if(qs.some(v=>isNaN(v)||v<0)||Math.abs(qs.reduce((a,b)=>a+b,0)-(Number(c.x.q)||0))>1e-9){bad++;if(el)el.textContent=' ← quantities must add up to '+f0(c.x.q||0);return}
+      go.push({c,rows:rows.map((r,k)=>({si:r.si?dtx(r.si):null,dr:r.dr?dtx(r.dr):null,rr:r.rr?dtx(r.rr):null,q:qs[k]}))})});
+    if(!go.length){T(bad?'Fix the quantities marked in red':'Type the qty received for at least one receipt');return false}
+    snap();
+    go.filter(g=>g.c.src==='p').sort((a,b)=>b.c.k-a.c.k).forEach(({c,rows})=>{const L=D.pos[c.pi].lines[c.li],x=L.rec[c.k];
+      L.rec.splice(c.k,1,...rows.map(r=>({...x,amt:{f:'LI'},...r})));dirty.add(c.pi)});
+    go.filter(g=>g.c.src==='e').sort((a,b)=>b.c.i-a.c.i).forEach(({c,rows})=>{const e=D.ent[c.i];Object.assign(e,rows[0]);
+      D.ent.splice(c.i+1,0,...rows.slice(1).map(r=>({nd:1,d:e.d||null,ap:e.ap||null,rb:e.rb||null,...r})))});
+    SEL.clear();topup();entDirty=true;touch();render();toastU(`Split ${go.length} receipt(s) into separate delivery rows`+(bad?` · ${bad} left as they are (qty total wrong)`:''));
+    if(bad){T(`${bad} receipt(s) not split — their quantities did not add up`)}},'pri']]);
+}
 const LBL={q:'Qty received',d:'Date received',dr:'DR',si:'SI#',rr:'RR',ap:'AP date',rb:'Received by',qty:'Qty',uom:'UOM',desc:'Description',po:'PO',supplier:'Supplier',bu:'BU',ln:'Line',item:'Item',price:'Price',buyer:'Buyer',lines:'line',rec:'receipt'};
 const nice=f=>String(f||'').split('.').filter(Boolean).map(t=>LBL[t]||t).join(' › ');
 async function showLog(){if(!window.SBX||!DB)return dlg('Change log','<p>Sign in to the database to see the change history.</p>',[['Close']]);
@@ -931,13 +1048,13 @@ async function showLog(){if(!window.SBX||!DB)return dlg('Change log','<p>Sign in
 async function syncApDlg(){if(!window.SBX||!DB)return dlg('Sync with AP Tracker','<p>Sign in to the database first.</p>',[['Close']]);
   const own=SBX.role==='owner';let pl,fills=[];
   try{pl=await SBX.plan()}catch(e){return dlg('Sync with AP Tracker','<p>Could not check: '+esc(e.message||e)+'</p>',[['Close']])}
-  if(own){try{fills=await SBX.syncAp(false)}catch(e){fills=[]}}
+  
   const rx=pl.filter(x=>x.proof),wt=pl.filter(x=>!x.proof&&x.state!=='Not yet in AP'),nw=pl.filter(x=>x.state==='Not yet in AP'),
     chk=pl.filter(x=>(x.rr_check||x.rr_diff)&&!x.proof),
     F={date_recv:'Date received',dr_no:'DR#',si_no:'SI#',supplier:'Supplier',sbu:'SBU',buyer:'Buyer',amount:'Amount',rr:'RR #'},cnt={},recs=new Set(fills.map(r=>r.ap_id)).size;fills.forEach(r=>cnt[r.field]=(cnt[r.field]||0)+1);
   const tile=(n,l,c)=>`<div style="flex:1;min-width:110px;border:1px solid var(--bd,#ccc);border-radius:8px;padding:8px 10px;text-align:center"><div style="font-size:22px;font-weight:800" class="${c||''}">${n}</div><div style="font-size:11px;color:var(--mut)">${l}</div></div>`,
     tbl=(rs,cols,max)=>`<div style="max-height:26vh;overflow:auto"><table class="lg" style="border-collapse:collapse;width:100%;font-size:12px"><thead><tr>${cols.map(c=>`<th>${c[0]}</th>`).join('')}</tr></thead><tbody>`+rs.slice(0,max||40).map(r=>`<tr>${cols.map(c=>`<td>${esc(c[1](r)==null?'':c[1](r))}</td>`).join('')}</tr>`).join('')+`</tbody></table></div>`+(rs.length>(max||40)?`<p style="color:var(--mut);font-size:12px">…and ${rs.length-(max||40)} more.</p>`:''),
-    note=r=>[r.rr_check?'Number of RR# ≠ number of SI# — fix the RR so each SI has one':'',r.rr_diff?'RR in AP Tracker ('+r.ap_rr+') differs from here':'',r.amount_unknown&&!r.proof?'One quantity covers several SI — enter each SI amount in the AP Tracker':''].filter(Boolean).join('; '),
+    note=r=>[r.rr_check?'Number of RR# ≠ number of SI# — fix the RR so each SI has one':'',r.rr_diff?'RR in AP Tracker ('+r.ap_rr+') differs from here':''].filter(Boolean).join('; '),
     sec=(t,s)=>`<h4 style="margin:14px 0 4px">${t}</h4>${s}`;
   let body=`<div style="min-width:min(640px,88vw)"><p style="margin:0 0 8px">Each invoice (SI#) is checked on its own against the AP Tracker, matched by <b>PO + SI#</b> (or DR# when there is no SI#).</p>
    <div style="display:flex;gap:8px;flex-wrap:wrap">${tile(rx.length,'Received by AP','ok')}${tile(wt.length,'In AP Tracker, waiting for AP','warn')}${tile(nw.length,'Not yet in AP Tracker','bad')}${tile(chk.length,'Need your check',chk.length?'bad':'')}</div>
@@ -945,14 +1062,12 @@ async function syncApDlg(){if(!window.SBX||!DB)return dlg('Sync with AP Tracker'
     <b>SI# 022509.022570</b> (or 022509/022570) = <b>two invoices</b> on one receipt.<br><b>RR 215.250</b> = two receiving reports, paired <b>in order</b>: SI 022509 ↔ RR 215 and SI 022570 ↔ RR 250.<br>
     One SI with several RR (<b>16705.18013</b>) = all those RR go on that one invoice. One RR for several SI = the same RR on each.<br>
     If the number of RR and SI differ (e.g. 3 SI, 2 RR) nothing is guessed — it is listed under “Need your check”.<br>
-    The quantity you enter covers the whole receipt, so for two SI in one row the amount per SI is left for you to type in the AP Tracker.</div></details>`;
-  if(nw.length)body+=sec('➕ Not yet in the AP Tracker — make a transmittal',tbl(nw,[['PO',r=>r.po],['SI#',r=>r.si||'—'],['RR #',r=>r.rr||'—'],['DR#',r=>r.dr||'—'],['Date received',r=>r.date_recv||''],['Amount',r=>r.amount==null?'(enter)':fmt(r.amount)]]))+`<p style="font-size:12px;color:var(--mut);margin:4px 0 0">In the AP Tracker: <b>New transmittal → Pull from Receiving Monitoring</b>. One row is created per SI, with its own RR.</p>`;
+    Amounts are not sent to the AP Tracker — you type them there from the SI.</div></details>`;
+  if(nw.length)body+=sec('➕ Not yet in the AP Tracker — make a transmittal',tbl(nw,[['PO',r=>r.po],['SI#',r=>r.si||'—'],['RR #',r=>r.rr||'—'],['DR#',r=>r.dr||'—'],['Date received',r=>r.date_recv||'']]))+`<p style="font-size:12px;color:var(--mut);margin:4px 0 0">In the AP Tracker: <b>New transmittal → Pull from Receiving Monitoring</b>. One row is created per SI, with its own RR.</p>`;
   if(chk.length)body+=sec('⚠ Need your check',tbl(chk,[['PO',r=>r.po],['SI#',r=>r.si||'—'],['RR here',r=>r.rr||'—'],['What to check',note]]));
   if(wt.length)body+=sec('⏳ In the AP Tracker, waiting for AP to confirm',tbl(wt,[['PO',r=>r.po],['SI#',r=>r.si||'—'],['RR #',r=>r.rr||'—'],['AP record',r=>(r.ap_tid||'')+(r.ap_status?' · '+r.ap_status:'')]],20));
-  if(own){body+=fills.length?sec('✎ Blank AP Tracker fields I can fill from your entries',`<p style="margin:0 0 4px"><b>${recs}</b> AP record(s): ${Object.entries(cnt).map(([k,n])=>`${F[k]||k}: <b>${n}</b>`).join(' · ')}</p>`+tbl(fills,[['AP record / PO',r=>r.po],['Field',r=>F[r.field]||r.field],['Will be filled with',r=>r.new_value]],40)+`<p style="font-size:12px;color:var(--mut);margin:4px 0 0">Only blank fields are filled — nothing already in the AP Tracker is overwritten. Each change is written to the AP Tracker's activity log.</p>`):sec('✎ Blank fields','<p style="margin:0">Nothing to fill — every matching AP Tracker record already has this information.</p>')}
-  else body+='<p style="font-size:12px;color:var(--mut)">Only the workspace owner can fill AP Tracker records.</p>';
   body+='</div>';
-  const btns=[['Close']];if(own&&fills.length)btns.push(['Fill AP Tracker now',async()=>{try{const r=await SBX.syncAp(true);toast('Filled '+new Set(r.map(x=>x.ap_id)).size+' AP Tracker record(s)');apAt=0;loadAp(true)}catch(e){toast('Could not fill: '+(e.message||e))}},'pri']);
+  const btns=[['Close']];
   dlg('Sync with AP Tracker',body,btns)}
 async function teamDlg(){if(!window.SBX||!DB)return dlg('Team access','<p>Sign in to the database first.</p>',[['Close']]);
   const d=dlg('Team access','<p>Loading…</p>',[['Close']]),box=()=>d.querySelector('.pvbox > div'),own=SBX.role==='owner';
