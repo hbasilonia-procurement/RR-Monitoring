@@ -550,6 +550,7 @@ async function flush(){if(busy){again=true;return}busy=true;
     if(known){const cur=await SBX.stamps(),ks=[...dirty].map(i=>'rm2026pos/p'+String(i).padStart(2,'0'));
       if(entDirty)new Set([...Object.keys(cur),...Object.keys(known)]).forEach(k=>{if(/^rm2026(ent|meta)\//.test(k))ks.push(k)});
       if(ks.some(k=>(cur[k]||'')!==(known[k]||''))){busy=false;again=false;return conflict()}}
+    if(D.pos.length===0&&deriveEnt(D.ent.filter(e=>!isBlank(e))).length===0&&(posDocs>0||chunks>0)){busy=false;again=false;dirty.clear();entDirty=false;stamp('NOT saved — this browser is empty, the database was kept');toast('Blocked: an empty copy would have replaced your saved data. Nothing was changed.');return}
     const P=DB.collection('rm2026pos');for(const i of [...dirty]){if(D.pos[i]){await P.doc('p'+String(i).padStart(2,'0')).set({j:JSON.stringify(D.pos[i])});W.push('rm2026pos/p'+String(i).padStart(2,'0'))}dirty.delete(i)}
     for(let i=D.pos.length;i<posDocs;i++){await P.doc('p'+String(i).padStart(2,'0')).delete();if(known)delete known['rm2026pos/p'+String(i).padStart(2,'0')]}posDocs=D.pos.length;
     if(entDirty){const rows=D.ent.filter(e=>!isBlank(e)),C=DB.collection('rm2026ent'),n=Math.ceil(rows.length/40);
@@ -560,7 +561,7 @@ async function flush(){if(busy){again=true;return}busy=true;
   busy=false;if(again){again=false;flush()}}
 function unsy(v){try{v?localStorage.setItem('rm2026:unsynced','1'):localStorage.removeItem('rm2026:unsynced')}catch(e){}}
 function syncAsk(nDb,nLoc,keep,take,later){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;background:#000b;z-index:95;display:grid;place-items:center;padding:16px';
-  d.innerHTML=`<div class="pvbox" style="width:min(480px,100%)"><h3>This browser and the database are different</h3><p>This browser holds data that does not match the database. It may include work that was <b>never saved</b> to the database.</p><p>Database: <b>${nDb} POs</b> &nbsp;·&nbsp; This browser: <b>${nLoc} POs</b></p><p style="color:var(--mut);font-size:12px">The side you do not pick is downloaded first as a backup file, so nothing is lost.</p><div style="display:flex;flex-direction:column;gap:8px"><button class="pri" data-k="keep">Keep this browser's data and upload it</button><button data-k="take">Load the database instead (discard browser changes)</button><button data-k="later">Decide later (work offline for now)</button></div></div>`;
+  d.innerHTML=`<div class="pvbox" style="width:min(480px,100%)"><h3>This browser and the database are different</h3><p style="font-weight:700">Pick the side that has your real data — the one with more POs.</p><p>This browser holds data that does not match the database. It may include work that was <b>never saved</b> to the database.</p><p>Database: <b>${nDb} POs</b> &nbsp;·&nbsp; This browser: <b>${nLoc} POs</b></p><p style="color:var(--mut);font-size:12px">The side you do not pick is downloaded first as a backup file, so nothing is lost.</p><div style="display:flex;flex-direction:column;gap:8px"><button class="pri" data-k="keep">Keep this browser's data and upload it</button><button data-k="take">Load the database instead (discard browser changes)</button><button data-k="later">Decide later (work offline for now)</button></div></div>`;
   document.body.appendChild(d);d.onclick=e=>{const b=e.target.closest('button[data-k]');if(!b)return;d.remove();({keep,take,later})[b.dataset.k]()}}
 async function dbInit(){try{DB=await(window.SBDB?SBDB():window.claude&&claude.use?claude.use('db'):null);if(!DB)return stamp('this browser (not synced)');
   known=null;if(window.SBX&&SBX.stamps){try{known=await SBX.stamps()}catch(e){known=null}}setTimeout(()=>loadAp(true),1200);
@@ -571,7 +572,8 @@ async function dbInit(){try{DB=await(window.SBDB?SBDB():window.claude&&claude.us
     const useDb=()=>{const x=dbx();D.pos=x.pos;D.ent=x.ent;D.xh=x.xh;D.v=x.v;if(Array.isArray(x.buyers)&&x.buyers.length)D.buyers=x.buyers;topup();if(migrate())touch(null);render();unsy(0);stamp('database + this browser')};
     const cnt=(pos,ent)=>pos.length+deriveEnt(ent||[]).length,day=new Date().toISOString().slice(0,10),x0=dbx(),
       sg=(pos,ent)=>pos.concat(deriveEnt((ent||[]).filter(e=>!isBlank(e)))).map(p=>[p.po,p.lines.length,p.lines.reduce((a,l)=>a+(l.qty||0),0),p.lines.reduce((a,l)=>a+l.rec.reduce((b,x)=>b+(x.q||0),0),0)].join('|')).sort().join(';');
-    if(!localStorage.getItem('rm2026:v2')||(!localStorage.getItem('rm2026:unsynced')&&sg(D.pos,D.ent)===sg(x0.pos,x0.ent)))return useDb();
+    if(cnt(D.pos,D.ent)===0)return useDb();
+    if(!localStorage.getItem('rm2026:v2')||(!localStorage.getItem('rm2026:unsynced')&&sg(D.pos,D.ent)===sg(x0.pos,x0.ent)&&cnt(x0.pos,x0.ent)>0))return useDb();
     return syncAsk(cnt(x0.pos,x0.ent),cnt(D.pos,D.ent),
       ()=>{out(`rm2026-database-backup-${day}.json`,JSON.stringify(x0));D.pos.forEach((_,i)=>dirty.add(i));entDirty=true;flush()},
       ()=>{out(`rm2026-browser-backup-${day}.json`,JSON.stringify(D));useDb()},
@@ -857,7 +859,7 @@ async function out(name,data){let dl=null;try{dl=window.claude&&claude.use?await
 $('#bx').onclick=async()=>{if(typeof ExcelJS==='undefined')return toast('Excel library not loaded');const b=await buildWorkbook(ExcelJS,D).xlsx.writeBuffer();out('ReceivingMonitoring2026_Formatted.xlsx',new Blob([b]))};
 $('#bj').onclick=()=>out('ReceivingMonitoring2026.json',JSON.stringify({pos:D.pos,ent:D.ent.filter(e=>!isBlank(e)),xh:D.xh,v:D.v},null,1));
 $('#br').onclick=()=>toast('Reset is turned off to protect your saved data. Use Undo, or ask for a backup restore.');
-if(migrate())touch(null);render();dbInit();
+{let had=false;try{had=!!(localStorage.getItem(KEY)||localStorage.getItem('rm2026:v1'))}catch(e){}if(had&&migrate())touch(null)}render();dbInit();
 </script>
 <script>
 /* ===== Excel-style ribbon: every command calls the app's own functions (render, flush, snap, bulkDelete, import/export…) ===== */
