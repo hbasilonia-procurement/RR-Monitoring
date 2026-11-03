@@ -1,7 +1,7 @@
 {
  "name": "Receiving Monitoring 2026",
  "short_name": "Receiving",
- "id": "./",
+ "id": "/RR-Monitoring/",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
