@@ -95,7 +95,7 @@ body.ng #ew td,body.ng #ew th{border-color:transparent}.f-buyer{text-align:cente
 #ew td input:hover{background:transparent;outline:none}
 #ew td:focus-within{outline:2px solid var(--gf);outline-offset:-2px;background:var(--gt)!important}
 #ew td input:focus{background:transparent!important;outline:none}
-#ew td.hl,#ew td.hl input{background:var(--gs)!important;color:var(--gx)!important}#ew td.hl{outline:2px solid var(--gf);outline-offset:-2px}#ew td.hl:focus-within{background:var(--gt)!important}#ew td.hl:focus-within input{background:transparent!important}
+#ew td.cpd{outline:2px dashed var(--btn)!important;outline-offset:-3px}#ew td.hl,#ew td.hl input{background:var(--gs)!important;color:var(--gx)!important}#ew td.hl{outline:2px solid var(--gf);outline-offset:-2px}#ew td.hl:focus-within{background:var(--gt)!important}#ew td.hl:focus-within input{background:transparent!important}
 #ew td.xr,#ew td.xc{box-shadow:inset 0 0 0 999px rgba(33,115,70,.13)}#ew th.xc{background:#217346!important;color:#fff!important}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) #ew td.xr,:root:not([data-theme=light]) #ew td.xc{box-shadow:inset 0 0 0 999px rgba(76,195,138,.2)}}
 :root[data-theme=dark] #ew td.xr,:root[data-theme=dark] #ew td.xc{box-shadow:inset 0 0 0 999px rgba(76,195,138,.2)}body.selg #tb input{user-select:none}#byw tr[data-by]{cursor:pointer}#byw tr[data-by]:hover td{background:var(--rhov)}
@@ -902,9 +902,9 @@ function newRec(){if(VIEW!=='ent')setView('ent');clearF();ST.pg=1e9;render();con
 async function save(){clearTimeout(tm);await flush();const t=$('#sv').textContent,n=issues().length;
   T((/unavailable/.test(t)?'⚠ Database unavailable — saved in this browser only':/database/.test(t)?'✔ Saved to the database':'✔ Saved in this browser')+(n?` · ${n} formula check(s) need attention`:''))}
 async function refresh(){clearTimeout(tm);await flush();try{if(DB)await dbInit();else render();T('↻ Data refreshed')}catch(e){T('⚠ Could not refresh — check your connection')}}
-const cp=a=>{const e=fi();if(!e)return;document.execCommand(a);if(a==='cut')e.dispatchEvent(new Event('change',{bubbles:true}))};
+const cp=a=>{if(!fi()&&SELS.size<2)return;try{if(document.execCommand(a))return}catch(x){}doCopy(null,a==='cut')};
 async function paste(){const e=fi();if(!e)return;let tx;try{tx=await navigator.clipboard.readText()}catch(x){return T('Clipboard is blocked by the browser — press Ctrl+V instead')}
-  const p=(e.dataset.a||'').split('.');if(/[\t\n]/.test(tx.trim())&&p[0]==='e')return fill(tx,+p[1],p[2]);
+  if(gridPaste(tx))return;const p=(e.dataset.a||'').split('.');if(/[\t\n]/.test(tx.trim())&&p[0]==='e')return fill(tx,+p[1],p[2]);
   try{e.setRangeText(tx,e.selectionStart,e.selectionEnd,'end')}catch(x){e.value=tx}e.dispatchEvent(new Event('change',{bubbles:true}))}
 function csv(){const q=v=>{v=v==null?'':String(v);return/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v},rows=[['PO #','Supplier','BU','Buyer','Line','Item','Description','UOM','Quantity','Price','Ordered','Qty Received','Date Received','SI Date','DR','SI#','RR','AP Endorsement Date','Received By']];
   D.pos.concat(deriveEnt(D.ent)).filter(matchP).forEach(p=>p.lines.forEach(l=>(l.rec.length?l.rec:[{}]).forEach(x=>rows.push([p.po,p.supplier,p.bu,p.buyer,l.ln,l.item,l.desc,l.uom,l.qty,l.price,l.ordered,x.q,x.d,x.sd,x.dr,x.si,x.rr,x.ap,x.rb]))));
@@ -958,11 +958,79 @@ document.addEventListener('mousedown',e=>{const t=e.target;if(!isIn(t))return;
   if(e.ctrlKey||e.metaKey){e.preventDefault();const s=new Set(SELS);s.has(t.dataset.a)?s.delete(t.dataset.a):s.add(t.dataset.a);ANK=t.dataset.a;return sel(s)}
   ANK=t.dataset.a;DRG=true;if(SELS.size)sel(new Set())});
 document.addEventListener('mouseover',e=>{if(!DRG||e.buttons!==1||!isIn(e.target)||!anc())return;if(e.target===anc()&&!SELS.size)return;getSelection().removeAllRanges();sel(rect(anc(),e.target))});
-document.addEventListener('mouseup',()=>{DRG=false});
+let PEND=null;document.addEventListener('mousedown',e=>{const t=e.target;PEND=isIn(t)&&!e.shiftKey&&!e.ctrlKey&&!e.metaKey?t.dataset.a:null},true);
+document.addEventListener('mouseup',()=>{DRG=false;const a=PEND;PEND=null;if(a)setTimeout(()=>{if(fi())return;const el=document.querySelector(`#tb input[data-a="${a}"]`);if(el)el.focus()},0)});
 document.addEventListener('keydown',e=>{const d=$('#rdlg');if(e.key==='Escape'&&SELS.size&&!(d&&!d.hidden))sel(new Set());if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='d'&&SELS.size>1){e.preventDefault();fillDown()}});
-document.addEventListener('paste',e=>{if(SELS.size<2)return;const tx=e.clipboardData.getData('text');if(!tx.trim()||/[\t\n]/.test(tx.trim()))return;e.preventDefault();e.stopImmediatePropagation();bulk([...SELS],tx.trim(),'Pasted into')},true);
-function put(a,raw){const p=a.split('.'),f=fld(a);let v=null;if(raw!==''){v=pv(f,raw);if(v===undefined)return false}
-  if(p[0]==='p'){D.pos[p[1]].lines[p[2]].rec[p[3]][f]=v;dirty.add(+p[1])}else D.ent[+p[1]][f]=v;return true}
+/* ---- Excel-style copy / cut / paste: click a cell (no need to highlight its text), then Ctrl+C, Ctrl+X, Ctrl+V. Works on highlighted ranges too ---- */
+function setA(a,raw){const p=a.split('.'),f=p[p.length-1],v=String(raw==null?'':raw).trim();let val=null;
+  if(v!==''){
+    if(['d','sd','ap'].includes(f)){val=pv(f,v);if(val===undefined){const d=new Date(v);if(isNaN(d))return false;val=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}}
+    else if(p[0]==='p'?(p.length===5?f==='q':['ln','qty','price'].includes(f)):NUM.includes(f)){const n=num(v);if(isNaN(n))return false;val=n}
+    else if(['dr','si','rr'].includes(f))val=dtx(v);else val=v}
+  if(p[0]==='p'){const P=D.pos[p[1]];if(!P)return false;
+    if(p.length===3)P[f]=val;
+    else if(p.length===4){const l=P.lines[p[2]];if(!l)return false;l[f]=val;if((f==='qty'||f==='price')&&typeof l.qty==='number'&&typeof l.price==='number')l.ordered=l.qty*l.price}
+    else{const x=P.lines[p[2]]&&P.lines[p[2]].rec[p[3]];if(!x)return false;x[f]=val}
+    dirty.add(+p[1])}
+  else{const i=+p[1];while(D.ent.length<=i)D.ent.push({});const r=D.ent[i];r[f]=val;if(['qty','price','ord'].includes(f))fixOrd(r)}
+  return true}
+let FRESH=null,CLIP=null;
+document.addEventListener('focusin',e=>{if(isIn(e.target))FRESH=e.target});
+document.addEventListener('input',e=>{if(e.target===FRESH)FRESH=null},true);
+const txSel=i=>{try{return i.selectionStart!=null&&i.selectionStart!==i.selectionEnd}catch(x){return false}};
+const inpOf=(tr,f)=>tr&&[...tr.querySelectorAll('input[data-a]')].find(i=>fld(i.dataset.a)===f);
+function grid(L){const P=L.map(i=>({i,r:i.closest('tr').rowIndex,c:CI.indexOf(fld(i.dataset.a))})).filter(o=>o.c>=0),
+  rs=[...new Set(P.map(o=>o.r))].sort((a,b)=>a-b),cs=[...new Set(P.map(o=>o.c))].sort((a,b)=>a-b),M=rs.map(()=>cs.map(()=>''));
+  P.forEach(o=>M[rs.indexOf(o.r)][cs.indexOf(o.c)]=String(o.i.value).replace(/[\t\r\n]+/g,' '));return{M,P,rs,cs}}
+function mark(L){document.querySelectorAll('#tb td.cpd').forEach(t=>t.classList.remove('cpd'));L.forEach(i=>i.closest('td').classList.add('cpd'))}
+function doCopy(e,cut){const a=fi(),multi=SELS.size>1;
+  if(!multi&&(!a||txSel(a)))return false;                       /* text highlighted inside one cell: normal copy */
+  const L=multi?cells().filter(i=>SELS.has(i.dataset.a)):[a];if(!L.length)return false;
+  const g=grid(L),txt=g.M.map(r=>r.join('\t')).join('\r\n');
+  if(e&&e.clipboardData){e.preventDefault();e.clipboardData.setData('text/plain',txt)}else{try{navigator.clipboard.writeText(txt)}catch(x){}}
+  CLIP=txt.replace(/\r/g,'');
+  if(cut){snap();let n=0;L.forEach(i=>{if(setA(i.dataset.a,''))n++});topup();touch();render();toastU(`Cut ${n} cell${n===1?'':'s'} — paste them with Ctrl+V.`)}
+  else{mark(L);T(`Copied ${L.length} cell${L.length===1?'':'s'} — click where to paste and press Ctrl+V`)}
+  return true}
+document.addEventListener('copy',e=>{if(doCopy(e,false))e.stopImmediatePropagation()},true);
+document.addEventListener('cut',e=>{if(doCopy(e,true))e.stopImmediatePropagation()},true);
+document.addEventListener('keydown',e=>{if(!(e.ctrlKey||e.metaKey)||e.altKey||fi()||SELS.size<2)return;const k=e.key.toLowerCase();if(k==='c'||k==='x'){e.preventDefault();doCopy(null,k==='x')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')mark([])});
+/* date cells: browsers fire no copy/paste events on them, so handle the keys directly */
+document.addEventListener('keydown',e=>{const t=e.target;if(!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||!isIn(t)||t.type!=='date')return;const k=e.key.toLowerCase();
+  if(k==='c'||k==='x'){e.preventDefault();doCopy(null,k==='x')}
+  else if(k==='v'){e.preventDefault();if(!navigator.clipboard||!navigator.clipboard.readText)return T('Clipboard is blocked by the browser');
+    navigator.clipboard.readText().then(tx=>gridPaste(tx,t)).catch(()=>T('Allow clipboard access to paste into date cells'))}});
+function gridPaste(tx,a0){const a=a0||fi(),multi=SELS.size>1;if(!a&&!multi)return false;
+  let t=String(tx==null?'':tx).replace(/\r\n?/g,'\n');if(t.endsWith('\n'))t=t.slice(0,-1);
+  const M=t.split('\n').map(r=>r.split('\t')),one=M.length===1&&M[0].length===1;
+  if(one&&!multi){                                                 /* one value into one cell */
+    if(a.type!=='date'&&(FRESH!==a||txSel(a)))return false;      /* already typing in the cell: insert at the cursor as usual */
+    const f=fld(a.dataset.a),v=t.trim();let w=v;
+    if(a.type==='date'&&v){w=pv(f,v);if(w===undefined){const d=new Date(v);if(isNaN(d)){T('That is not a date');return true}w=d.toISOString().slice(0,10)}}
+    a.value=w;FRESH=null;a.dispatchEvent(new Event('change',{bubbles:true}));return true}
+  if(!one&&a&&!multi&&a.dataset.a[0]==='e'&&M[0].length>1&&t!==CLIP)return false; /* whole rows copied from Excel: keep the "paste rows" import */
+  const jobs=[];let miss=0;
+  if(multi){const g=grid(cells().filter(i=>SELS.has(i.dataset.a)));
+    if(g.rs.length>=M.length&&g.cs.length>=M[0].length){            /* fill the highlighted range, repeating the copied block (one value fills all) */
+      g.P.forEach(o=>{const r=g.rs.indexOf(o.r),c=g.cs.indexOf(o.c),row=M[r%M.length];jobs.push([o.i.dataset.a,row[c%M[0].length]??''])})}
+    else{const top=g.P.slice().sort((x,y)=>x.r-y.r||x.c-y.c)[0];return pasteAt(top.i,M)}}
+  else return pasteAt(a,M);
+  return run(jobs,miss)}
+function pasteAt(s,M){const c0=CI.indexOf(fld(s.dataset.a)),jobs=[];let miss=0;
+  if(M[0].length===1&&M.every(r=>r.length===1)){                   /* one column: go down that column */
+    const col=cells().filter(i=>fld(i.dataset.a)===CI[c0]),k=col.indexOf(s);
+    M.forEach((r,j)=>{const i=col[k+j];if(i)jobs.push([i.dataset.a,r[0]]);else miss++})}
+  else{let tr=s.closest('tr');
+    M.forEach(row=>{row.forEach((v,j)=>{const f=CI[c0+j];if(!f)return void(v.trim()&&miss++);const i=inpOf(tr,f);if(i)jobs.push([i.dataset.a,v]);else if(v.trim())miss++});tr=tr&&tr.nextElementSibling;if(!tr)tr=null})}
+  return run(jobs,miss)}
+function run(jobs,miss){if(!jobs.length){T('Nothing to paste here');return true}
+  snap();let ok=0,bad=0;const done=new Set();jobs.forEach(([k,v])=>{if(setA(k,v)){ok++;done.add(k)}else bad++});
+  topup();touch();render();sel(done);ANK=jobs[0][0];
+  const f=document.querySelector(`#tb input[data-a="${jobs[0][0]}"]`);if(f)f.focus();
+  toastU(`Pasted ${ok} cell${ok===1?'':'s'}`+(bad?` · ${bad} skipped (not valid for that column)`:'')+(miss?` · ${miss} didn't fit`:'')+'.');return true}
+document.addEventListener('paste',e=>{if((e.clipboardData.files||[]).length)return;if(gridPaste(e.clipboardData.getData('text'))){e.preventDefault();e.stopImmediatePropagation()}},true);
+function put(a,raw){return setA(a,raw)}
 function bulk(ks,raw,label){snap();let ok=0,bad=0;ks.forEach(k=>put(k,raw)?ok++:bad++);topup();touch();render();toastU(`${label} ${ok} cell(s)`+(bad?` · ${bad} skipped (not valid for that column)`:'')+'.')}
 function fillDlg(){if(!SELS.size)return;const fs=[...new Set([...SELS].map(fld))],ty=fs.every(x=>['d','sd','ap'].includes(x))?'date':'text',ls=fs.every(x=>x==='buyer')?' list="bylist"':'';
   dlg('Fill highlighted cells',`<p>${SELS.size} cell(s) in ${fs.length} column(s) will get the same value.</p><label>Value<input id="fv" type="${ty}"${ls}></label><p style="color:var(--mut)">Numbers for Quantity, Price, Qty Received and RR; dates for the date columns. Leave empty to clear.</p>`,[['Cancel'],['Fill',()=>{bulk([...SELS],$('#fv').value.trim(),'Filled')},'pri']])}
